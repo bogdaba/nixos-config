@@ -95,6 +95,9 @@
       syncplay
       doublecmd
       libsForQt5.okular
+      krita
+      anki
+      calibre
     ];
   };
 
