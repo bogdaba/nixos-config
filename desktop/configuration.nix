@@ -94,6 +94,7 @@
       mc
       syncplay
       doublecmd
+      libsForQt5.okular
     ];
   };
 
