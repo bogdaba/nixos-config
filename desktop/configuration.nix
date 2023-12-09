@@ -52,7 +52,7 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-
+  };
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -116,7 +116,7 @@
     ];
   };
 
-  environment.vari
+  
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
