@@ -53,6 +53,12 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  # Wayaland
+  services.xserver.displayManager.gdm.wayland = true;
+  programs.xwayland.enable = true; # Whether to use XWayLand
+  environment.sessionVariables.MOZ_ENABLE_WAYLAND = "1"; # Firefox
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # For electron
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
