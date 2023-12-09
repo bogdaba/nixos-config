@@ -42,6 +42,17 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Graphics
+  # AMD
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -99,8 +110,13 @@
       anki
       calibre
       discord
+      hledger
+      qimgv
+      davinci-resolve
     ];
   };
+
+  environment.vari
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
