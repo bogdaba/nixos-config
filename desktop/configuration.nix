@@ -98,6 +98,7 @@
       krita
       anki
       calibre
+      discord
     ];
   };
 
