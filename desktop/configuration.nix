@@ -5,16 +5,19 @@
 { inputs, config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    # Import home-manager's NixOS module
+    inputs.home-manager.nixosModules.home-manager
 
-      # My modules
-      ../modules/env.nix
-      ../modules/fonts.nix
-      ../modules/programs.nix
-      ../modules/shell.nix
-    ];
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+
+    # My modules
+    ../modules/env.nix
+    ../modules/fonts.nix
+    ../modules/programs.nix
+    ../modules/shell.nix
+  ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
@@ -74,8 +77,7 @@
   # Wayaland
   services.xserver.displayManager.gdm.wayland = true;
   programs.xwayland.enable = true; # Whether to use XWayLand
-  environment.sessionVariables.MOZ_ENABLE_WAYLAND = "1"; # Firefox
-  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # For electron
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -121,21 +123,8 @@
     description = "bork";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      keepassxc
-      obsidian
-      git
-      mc
-      syncplay
-      doublecmd
-      libsForQt5.okular
       krita
-      anki
-      calibre
       discord
-      hledger
-      qimgv
-      hledger
     ];
   };
 
@@ -143,6 +132,9 @@
   enable = true;
   };
   
+  environment.systemPackages = with pkgs; [
+    davinci-resolve
+  ];
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
@@ -157,9 +149,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    davinci-resolve
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

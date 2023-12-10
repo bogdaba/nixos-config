@@ -20,5 +20,17 @@ environment.systemPackages = with pkgs; [
       }
     ];
   })
+  calibre
+  hledger
+  qimgv
+  anki
+  libsForQt5.okular
+  doublecmd
+  syncplay
+  mc
+  git
+  keepassxc
+  firefox
+  obsidian
   ];
 }
