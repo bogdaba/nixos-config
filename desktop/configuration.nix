@@ -52,6 +52,9 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
   };
 
   # Wayaland
@@ -118,10 +121,12 @@
       discord
       hledger
       qimgv
-      davinci-resolve
     ];
   };
 
+  programs.steam = {
+  enable = true;
+  };
   
 
   # Enable automatic login for the user.
@@ -156,6 +161,7 @@
       }
     ];
   })
+  davinci-resolve
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
