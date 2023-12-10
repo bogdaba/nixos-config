@@ -8,6 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # My modules
+      #../modules/shell.nix
+      ../modules/fonts.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Bootloader.
