@@ -10,4 +10,4 @@
   fonts.fontconfig.defaultFonts.sansSerif = [
     "M PLUS 2"
   ];
-};
+}
