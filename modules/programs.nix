@@ -32,5 +32,7 @@ environment.systemPackages = with pkgs; [
   keepassxc
   firefox
   obsidian
+  gnome.gnome-tweaks
+  gnomeExtensions.vertical-workspaces # not sure if this does anything
   ];
 }

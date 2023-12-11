@@ -81,7 +81,8 @@
 
   # Wayaland
   services.xserver.displayManager.gdm.wayland = true;
-  programs.xwayland.enable = true; # Whether to use XWayLand
+  # Obsidian works with this set to false so I have no idea what it does.
+  # programs.xwayland.enable = true; # Whether to use XWayLand
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
