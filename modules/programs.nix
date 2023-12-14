@@ -34,5 +34,10 @@ environment.systemPackages = with pkgs; [
   obsidian
   gnome.gnome-tweaks
   gnomeExtensions.vertical-workspaces # not sure if this does anything
+  p7zip
+  unzip
+  qbittorrent
+  celluloid
+  mpv
   ];
 }
