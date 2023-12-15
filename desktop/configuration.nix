@@ -79,10 +79,11 @@
     ];
   };
 
+
   # Wayaland
   services.xserver.displayManager.gdm.wayland = true;
   # Obsidian works with this set to false so I have no idea what it does.
-  # programs.xwayland.enable = true; # Whether to use XWayLand
+    programs.xwayland.enable = true; # Whether to use XWayLand
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -152,6 +153,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+    ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

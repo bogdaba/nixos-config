@@ -8,6 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+
+    # My modules
+    ../modules/env.nix
+    ../modules/fonts.nix
+    ../modules/programs.nix
+    ../modules/shell.nix
+
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Bootloader.
@@ -87,18 +95,6 @@
     description = "bork";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      keepassxc
-      obsidian
-      git
-      mc
-      syncplay
-      doublecmd
-      libsForQt5.okular
-      krita
-      anki
-      calibre
-      discord
     ];
   };
 
@@ -118,22 +114,6 @@
   environment.systemPackages = with pkgs; [
   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  (vscode-with-extensions.override {
-    vscode = vscodium;
-    vscodeExtensions = with vscode-extensions; [
-      bbenoist.nix
-      ms-python.python
-      ms-azuretools.vscode-docker
-      ms-vscode-remote.remote-ssh
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "remote-ssh-edit";
-        publisher = "ms-vscode-remote";
-        version = "0.47.2";
-        sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-      }
-    ];
-  })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
