@@ -134,6 +134,7 @@
       discord
       blender-hip
       gimp-with-plugins
+      godot_4
     ];
   };
 
