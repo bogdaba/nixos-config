@@ -132,6 +132,8 @@
     packages = with pkgs; [
       krita
       discord
+      blender-hip
+      gimp-with-plugins
     ];
   };
 
