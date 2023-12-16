@@ -31,6 +31,14 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
+
+  #fileSystems."/mnt/hdd" =
+  #{ device = "/dev/sdb2/FE3425B034256CB9";
+  #    fsType = "ntfs-3g"; 
+  #    options = [ "rw" "uid=theUidOfYourUser"];
+  #};
 
   #boot.loader.grub.enable = true;
   #boot.loader.grub.device = "nodev";
@@ -141,6 +149,8 @@
       blender-hip
       gimp-with-plugins
       godot_4
+      brave
+      onlyoffice-bin
     ];
   };
 

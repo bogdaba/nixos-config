@@ -100,6 +100,7 @@
     description = "bork";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      onlyoffice-bin
     ];
   };
 
