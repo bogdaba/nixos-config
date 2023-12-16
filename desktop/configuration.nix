@@ -97,7 +97,13 @@
     layout = "pl";
     xkbVariant = "";
   };
-
+  
+  i18n = {
+    inputMethod = {
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ mozc ];
+    };
+  };
   # Configure console keymap
   console.keyMap = "pl2";
 
@@ -145,7 +151,11 @@
   environment.systemPackages = with pkgs; [
     davinci-resolve
   ];
-
+   
+  # Virtualisation
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "bork";
