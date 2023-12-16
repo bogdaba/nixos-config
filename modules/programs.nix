@@ -39,5 +39,6 @@ environment.systemPackages = with pkgs; [
   qbittorrent
   celluloid
   mpv
+  neofetch
   ];
 }

@@ -29,6 +29,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
@@ -87,18 +88,21 @@
     ];
   };
 
-
-  # Wayaland
-  services.xserver.displayManager.gdm.wayland = true;
-  # Obsidian works with this set to false so I have no idea what it does.
-    programs.xwayland.enable = true; # Whether to use XWayLand
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # Gnome Wayaland
+  services.xserver.displayManager.gdm.wayland = true;
+  programs.xwayland.enable = true;
+
+  # Plasma????
+  #services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
+  #services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Configure keymap in X11
   services.xserver = {
@@ -145,12 +149,13 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       krita
-      discord
+      # discord
       blender-hip
       gimp-with-plugins
       godot_4
       brave
       onlyoffice-bin
+      wtype
     ];
   };
 
