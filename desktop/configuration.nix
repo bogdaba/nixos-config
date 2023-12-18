@@ -164,7 +164,6 @@
   };
   
   environment.systemPackages = with pkgs; [
-    log4cxx # for davinci
     davinci-resolve
     steam-run
   ];
