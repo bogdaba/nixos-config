@@ -17,6 +17,16 @@
     ../modules/shell.nix
 
     ];
+
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      # Import your home-manager configuration
+      bork = import ../home.nix;
+    };
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
