@@ -29,7 +29,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
@@ -164,8 +164,12 @@
   };
   
   environment.systemPackages = with pkgs; [
+    log4cxx # for davinci
     davinci-resolve
+    steam-run
   ];
+
+  services.flatpak.enable = true;
    
   # Virtualisation
   virtualisation.libvirtd.enable = true;
