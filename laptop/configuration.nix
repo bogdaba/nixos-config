@@ -34,7 +34,7 @@
   
   boot.initrd.luks.devices."luks-5a3b4af0-d37b-41bb-80d0-8636b7cc2599".device = "/dev/disk/by-uuid/5a3b4af0-d37b-41bb-80d0-8636b7cc2599";
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
