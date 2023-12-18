@@ -5,20 +5,20 @@
 { inputs, config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    # Import home-manager's NixOS module
+    inputs.home-manager.nixosModules.home-manager
 
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
 
     # My modules
     ../modules/env.nix
     ../modules/fonts.nix
     ../modules/programs.nix
     ../modules/shell.nix
-
-    ];
-
-
+  ];
+  
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
