@@ -52,7 +52,13 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName  = "bogdaba";
+    userEmail = "bogdaba@github.com";
+  };
+
+
   #programs.bash.shellAliases = {
   #  nixsus = "sudo nixos-rebuild switch --flake /home/bork/nix-config#desktop";
   #};
