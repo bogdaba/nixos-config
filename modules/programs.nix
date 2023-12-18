@@ -11,6 +11,7 @@ environment.systemPackages = with pkgs; [
       ms-python.python
       ms-azuretools.vscode-docker
       ms-vscode-remote.remote-ssh
+      genieai.chatgpt-vscode
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "remote-ssh-edit";
