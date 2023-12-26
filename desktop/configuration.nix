@@ -3,7 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { inputs, config, pkgs, ... }:
-
+let
+  my-python-packages = ps: with ps; [
+    pandas
+    requests
+    # other python packages
+  ];
+in
 {
   imports = [
     # Import home-manager's NixOS module
@@ -27,6 +33,9 @@
     };
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.auto-optimise-store = true;
+  nix.gc.automatic = true;
+  
 
   # Bootloader.
   #boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -76,7 +85,7 @@
   # Graphics
   # AMD
   boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   # OpenGL
   hardware.opengl = {
@@ -87,7 +96,9 @@
       rocmPackages.clr.icd
     ];
   };
-
+  #hardware.enableRedistributableFirmware = true;
+  #hardware.enableAllFirmware = true;
+ 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -96,8 +107,8 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Gnome Wayaland
-  services.xserver.displayManager.gdm.wayland = true;
-  programs.xwayland.enable = true;
+  services.xserver.displayManager.gdm.wayland = false;
+  # programs.xwayland.enable = true;
 
   # Plasma????
   #services.xserver.displayManager.sddm.enable = true;
@@ -112,8 +123,12 @@
   
   i18n = {
     inputMethod = {
-      enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ mozc ];
+      enabled = "fcitx5"; #or ibus
+      #ibus.engines = with pkgs.ibus-engines; [ mozc ];
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
     };
   };
   # Configure console keymap
@@ -156,6 +171,37 @@
       brave
       onlyoffice-bin
       wtype
+      libsForQt5.kdenlive
+      # krusader stuff
+      krusader
+      findutils
+      libsForQt5.kio-extras
+      libsForQt5.kget
+      kompare # or kdiff3
+      krename
+      thunderbird
+      gnutar
+      gzip
+      bzip2
+      xz
+      zip
+      unzip
+      rar
+      rpm
+      dpkg
+      arj
+      lha
+      p7zip
+      libsForQt5.breeze-qt5 #hopefully this fixes icons
+      libsForQt5.breeze-gtk
+      libsForQt5.breeze-icons
+      #
+      strawberry
+      #amarok # doesn't work
+      #cozy # flatpak?
+      jetbrains.pycharm-community-src
+      palemoon-bin
+      nomacs
     ];
   };
 
@@ -163,12 +209,24 @@
   enable = true;
   };
   
+  programs.direnv.enable = true;
+
+  qt.enable = true;
+  
   environment.systemPackages = with pkgs; [
+    (python3.withPackages my-python-packages)
     davinci-resolve
     steam-run
+    python3
+    poetry
+    ffmpeg_5-full
+    imagemagick
   ];
 
   services.flatpak.enable = true;
+
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
    
   # Virtualisation
   virtualisation.libvirtd.enable = true;

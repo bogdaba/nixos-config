@@ -27,6 +27,10 @@
     };
   };
 
+  programs.zsh = {
+    enable = true;
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

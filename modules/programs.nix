@@ -24,7 +24,7 @@ environment.systemPackages = with pkgs; [
   calibre
   hledger
   qimgv
-  anki
+  anki-bin
   libsForQt5.okular
   doublecmd
   syncplay
@@ -41,5 +41,8 @@ environment.systemPackages = with pkgs; [
   celluloid
   mpv
   neofetch
+  mullvad-browser
+  libreoffice
+  copyq
   ];
 }
