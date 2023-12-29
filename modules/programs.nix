@@ -44,5 +44,6 @@ environment.systemPackages = with pkgs; [
   mullvad-browser
   libreoffice
   copyq
+  yt-dlp
   ];
 }

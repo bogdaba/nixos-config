@@ -9,5 +9,6 @@
     # NIXOS_OZONE_WL = "1"; # electron - enabling 
     LEDGER_FILE = "/home/bork/vault/areas/finances/2023.journal";
     # PATH = "/home/bork/scripts";
+    #QT_QPA_PLATFORM = "wayland";
   };
 }

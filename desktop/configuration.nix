@@ -23,6 +23,7 @@ in
     ../modules/fonts.nix
     ../modules/programs.nix
     ../modules/shell.nix
+    ../modules/nvidia.nix
   ];
 
   home-manager = {
@@ -34,11 +35,11 @@ in
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
-  nix.gc.automatic = true;
+  #nix.gc.automatic = true;
   
 
   # Bootloader.
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
@@ -84,18 +85,19 @@ in
 
   # Graphics
   # AMD
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "modesetting" ];
+  #boot.initrd.kernelModules = [ "amdgpu" ];
+  #services.xserver.videoDrivers = [ "modesetting" ];
+  hardware.enableAllFirmware = true;
 
   # OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
-  };
+  #hardware.opengl = {
+  #  enable = true;
+  #  driSupport = true;
+  #  driSupport32Bit = true;
+  #  extraPackages = with pkgs; [
+  #    rocmPackages.clr.icd
+  #  ];
+  #};
   #hardware.enableRedistributableFirmware = true;
   #hardware.enableAllFirmware = true;
  
@@ -108,7 +110,7 @@ in
 
   # Gnome Wayaland
   services.xserver.displayManager.gdm.wayland = false;
-  # programs.xwayland.enable = true;
+  #programs.xwayland.enable = true;
 
   # Plasma????
   #services.xserver.displayManager.sddm.enable = true;
@@ -202,6 +204,9 @@ in
       jetbrains.pycharm-community-src
       palemoon-bin
       nomacs
+      wacomtablet
+      libwacom
+      xf86_input_wacom
     ];
   };
 
@@ -221,6 +226,7 @@ in
     poetry
     ffmpeg_5-full
     imagemagick
+    xorg.xprop
   ];
 
   services.flatpak.enable = true;

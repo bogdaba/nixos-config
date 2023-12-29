@@ -70,6 +70,7 @@
     userEmail = "bogdaba@github.com";
   };
 
+  services.syncthing.enable = true;
 
   #programs.bash.shellAliases = {
   #  nixsus = "sudo nixos-rebuild switch --flake /home/bork/nix-config#desktop";
