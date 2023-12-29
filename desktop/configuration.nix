@@ -96,8 +96,8 @@ in
   services.xserver.desktopManager.gnome.enable = true;
 
   # Gnome Wayaland
-  services.xserver.displayManager.gdm.wayland = true;
-  programs.xwayland.enable = true;
+  services.xserver.displayManager.gdm.wayland = false;
+  #programs.xwayland.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
