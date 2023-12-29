@@ -9,11 +9,9 @@ let
 in
 
 {
-  imports = [
-    ./vscode.nix
-  ];
+  programs.direnv.enable = true;
 
-environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     (python3.withPackages my-python-packages)
     python3
     poetry

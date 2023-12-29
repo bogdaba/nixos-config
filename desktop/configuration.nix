@@ -186,17 +186,12 @@
   programs.steam = {
   enable = true;
   };
-  
-  programs.direnv.enable = true; # for python
 
   qt.enable = true;
   
   environment.systemPackages = with pkgs; [
-    #(python3.withPackages my-python-packages)
     davinci-resolve
     steam-run
-    #python3
-    #poetry
     ffmpeg_5-full
     imagemagick
     xorg.xprop
