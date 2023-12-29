@@ -71,8 +71,7 @@
 
    # Wayaland
   services.xserver.displayManager.gdm.wayland = true;
-  # Obsidian works with this set to false so I have no idea what it does.
-    programs.xwayland.enable = true; # Whether to use XWayLand
+  programs.xwayland.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -108,7 +107,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bork = {

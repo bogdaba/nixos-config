@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { inputs, config, pkgs, ... }:
+
 let
   my-python-packages = ps: with ps; [
     pandas
@@ -10,6 +11,7 @@ let
     # other python packages
   ];
 in
+
 {
   imports = [
     # Import home-manager's NixOS module
@@ -33,13 +35,14 @@ in
       bork = import ../home.nix;
     };
   };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
   #nix.gc.automatic = true;
   
 
   # Bootloader.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
@@ -84,23 +87,7 @@ in
   };
 
   # Graphics
-  # AMD
-  #boot.initrd.kernelModules = [ "amdgpu" ];
-  #services.xserver.videoDrivers = [ "modesetting" ];
   hardware.enableAllFirmware = true;
-
-  # OpenGL
-  #hardware.opengl = {
-  #  enable = true;
-  #  driSupport = true;
-  #  driSupport32Bit = true;
-  #  extraPackages = with pkgs; [
-  #    rocmPackages.clr.icd
-  #  ];
-  #};
-  #hardware.enableRedistributableFirmware = true;
-  #hardware.enableAllFirmware = true;
- 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -109,13 +96,8 @@ in
   services.xserver.desktopManager.gnome.enable = true;
 
   # Gnome Wayaland
-  services.xserver.displayManager.gdm.wayland = false;
-  #programs.xwayland.enable = true;
-
-  # Plasma????
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
-  #services.xserver.displayManager.defaultSession = "plasmawayland";
+  services.xserver.displayManager.gdm.wayland = true;
+  programs.xwayland.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -159,7 +141,6 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bork = {
     isNormalUser = true;
     description = "bork";
