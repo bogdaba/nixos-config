@@ -3,15 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { inputs, config, pkgs, ... }:
-
-let
-  my-python-packages = ps: with ps; [
-    pandas
-    requests
-    # other python packages
-  ];
-in
-
 {
   imports = [
     # Import home-manager's NixOS module
@@ -26,6 +17,7 @@ in
     ../modules/programs.nix
     ../modules/shell.nix
     ../modules/nvidia.nix
+    ../modules/python.nix
   ];
 
   home-manager = {
@@ -195,16 +187,16 @@ in
   enable = true;
   };
   
-  programs.direnv.enable = true;
+  programs.direnv.enable = true; # for python
 
   qt.enable = true;
   
   environment.systemPackages = with pkgs; [
-    (python3.withPackages my-python-packages)
+    #(python3.withPackages my-python-packages)
     davinci-resolve
     steam-run
-    python3
-    poetry
+    #python3
+    #poetry
     ffmpeg_5-full
     imagemagick
     xorg.xprop

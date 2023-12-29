@@ -2,8 +2,6 @@
 
 {
 environment.systemPackages = with pkgs; [
-  vim 
-  wget
   (vscode-with-extensions.override {
     vscode = vscodium;
     vscodeExtensions = with vscode-extensions; [
@@ -21,29 +19,5 @@ environment.systemPackages = with pkgs; [
       }
     ];
   })
-  calibre
-  hledger
-  qimgv
-  anki-bin
-  libsForQt5.okular
-  doublecmd
-  syncplay
-  mc
-  git
-  keepassxc
-  firefox
-  obsidian
-  gnome.gnome-tweaks
-  gnomeExtensions.vertical-workspaces # not sure if this does anything
-  p7zip
-  unzip
-  qbittorrent
-  celluloid
-  mpv
-  neofetch
-  mullvad-browser
-  libreoffice
-  copyq
-  yt-dlp
   ];
 }

@@ -44,7 +44,7 @@
 
   # Prevent "ucsi_ccg 0-0008: failed to get FW build information" error at boot
   # https://discourse.nixos.org/t/boot-error-ucsi-ccg-0-0008-failed-to-get-fw-build/27842
-  boot.blacklistedKernelModules = [ "ucsi_ccg" ]
+  boot.blacklistedKernelModules = [ "ucsi_ccg" ];
   
 
 }
