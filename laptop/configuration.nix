@@ -71,8 +71,7 @@
 
    # Wayaland
   services.xserver.displayManager.gdm.wayland = true;
-  # Obsidian works with this set to false so I have no idea what it does.
-    programs.xwayland.enable = true; # Whether to use XWayLand
+  programs.xwayland.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;

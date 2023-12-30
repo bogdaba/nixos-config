@@ -3,13 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { inputs, config, pkgs, ... }:
-let
-  my-python-packages = ps: with ps; [
-    pandas
-    requests
-    # other python packages
-  ];
-in
 {
   imports = [
     # Import home-manager's NixOS module
@@ -23,6 +16,8 @@ in
     ../modules/fonts.nix
     ../modules/programs.nix
     ../modules/shell.nix
+    ../modules/nvidia.nix
+    ../modules/python.nix
   ];
 
   home-manager = {
@@ -32,9 +27,10 @@ in
       bork = import ../home.nix;
     };
   };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
-  nix.gc.automatic = true;
+  #nix.gc.automatic = true;
   
 
   # Bootloader.
@@ -83,22 +79,7 @@ in
   };
 
   # Graphics
-  # AMD
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "modesetting" ];
-
-  # OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
-  };
-  #hardware.enableRedistributableFirmware = true;
-  #hardware.enableAllFirmware = true;
- 
+  hardware.enableAllFirmware = true;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -108,12 +89,7 @@ in
 
   # Gnome Wayaland
   services.xserver.displayManager.gdm.wayland = false;
-  # programs.xwayland.enable = true;
-
-  # Plasma????
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
-  #services.xserver.displayManager.defaultSession = "plasmawayland";
+  #programs.xwayland.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -157,7 +133,6 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bork = {
     isNormalUser = true;
     description = "bork";
@@ -202,25 +177,24 @@ in
       jetbrains.pycharm-community-src
       palemoon-bin
       nomacs
+      wacomtablet
+      libwacom
+      xf86_input_wacom
     ];
   };
 
   programs.steam = {
   enable = true;
   };
-  
-  programs.direnv.enable = true;
 
   qt.enable = true;
   
   environment.systemPackages = with pkgs; [
-    (python3.withPackages my-python-packages)
     davinci-resolve
     steam-run
-    python3
-    poetry
     ffmpeg_5-full
     imagemagick
+    xorg.xprop
   ];
 
   services.flatpak.enable = true;

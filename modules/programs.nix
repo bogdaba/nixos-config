@@ -1,30 +1,17 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
+  imports = [
+    ./vscode.nix
+  ];
+
 environment.systemPackages = with pkgs; [
   vim 
   wget
-  (vscode-with-extensions.override {
-    vscode = vscodium;
-    vscodeExtensions = with vscode-extensions; [
-      bbenoist.nix
-      ms-python.python
-      ms-azuretools.vscode-docker
-      ms-vscode-remote.remote-ssh
-      genieai.chatgpt-vscode
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-      {
-        name = "remote-ssh-edit";
-        publisher = "ms-vscode-remote";
-        version = "0.47.2";
-        sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-      }
-    ];
-  })
   calibre
   hledger
   qimgv
-  anki-bin
+  anki-bin # the other one is outdated
   libsForQt5.okular
   doublecmd
   syncplay
@@ -44,5 +31,6 @@ environment.systemPackages = with pkgs; [
   mullvad-browser
   libreoffice
   copyq
+  yt-dlp
   ];
 }
