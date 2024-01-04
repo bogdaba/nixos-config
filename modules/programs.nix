@@ -32,5 +32,6 @@ environment.systemPackages = with pkgs; [
   libreoffice
   copyq
   yt-dlp
+  speedcrunch
   ];
 }
