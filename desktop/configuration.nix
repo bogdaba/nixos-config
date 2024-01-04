@@ -19,6 +19,30 @@
     ../modules/nvidia.nix
     ../modules/python.nix
   ];
+  
+
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      #outputs.overlays.additions
+      #outputs.overlays.modifications
+      #outputs.overlays.unstable-packages
+
+      # You can also add overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+      (final: prev: {
+        obsidian-wayland = prev.obsidian.override {electron = final.electron_24;};
+      })
+    ];
+  };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
@@ -35,8 +59,16 @@
 
   # Bootloader.
   #boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Due to issues with detecting bootable drives by mobo better not to touch this
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.grub.efiSupport = true;
+  #boot.loader.grub.enable = true;
+  #boot.loader.grub.device = "nodev";
+  #boot.loader.grub.useOSProber = true;
+  
+
   boot.supportedFilesystems = [ "ntfs" ];
 
 
@@ -45,10 +77,6 @@
   #    fsType = "ntfs-3g"; 
   #    options = [ "rw" "uid=theUidOfYourUser"];
   #};
-
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.device = "nodev";
-  #boot.loader.grub.useOSProber = true;
 
   networking.hostName = "desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -62,6 +90,7 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -87,9 +116,13 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # Gnome Wayaland
-  services.xserver.displayManager.gdm.wayland = false;
-  #programs.xwayland.enable = true;
+  # Wayland
+  services.xserver.displayManager.gdm.wayland = true;
+  programs.xwayland.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # for electron apps
+  #environment.sessionVariables.OBSIDIAN_USE_WAYLAND = "1";
+  environment.sessionVariables.QT_QPA_PLATFORM = "wayland"; # for qt apps
+  
 
   # Configure keymap in X11
   services.xserver = {
@@ -140,7 +173,7 @@
     packages = with pkgs; [
       krita
       # discord
-      blender-hip
+      blender
       gimp-with-plugins
       godot_4
       brave
@@ -180,6 +213,7 @@
       wacomtablet
       libwacom
       xf86_input_wacom
+      ungoogled-chromium
     ];
   };
 
@@ -195,6 +229,8 @@
     ffmpeg_5-full
     imagemagick
     xorg.xprop
+    chromium
+    #obsidian-wayland
   ];
 
   services.flatpak.enable = true;
@@ -219,6 +255,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+    "electron-24.8.6"
     ];
 
   # List packages installed in system profile. To search, run:
