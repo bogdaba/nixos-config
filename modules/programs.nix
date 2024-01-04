@@ -19,7 +19,7 @@ environment.systemPackages = with pkgs; [
   git
   keepassxc
   firefox
-  obsidian
+  #obsidian
   gnome.gnome-tweaks
   gnomeExtensions.vertical-workspaces # not sure if this does anything
   p7zip
