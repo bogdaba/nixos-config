@@ -231,6 +231,7 @@
     xorg.xprop
     #chromium
     obsidian
+    tts
   ];
 
   services.flatpak.enable = true;
