@@ -119,9 +119,11 @@
   # Wayland
   services.xserver.displayManager.gdm.wayland = false;
   #programs.xwayland.enable = true;
+  #environment.sessionVariables.QT_QPA_PLATFORM = "wayland"; # for qt apps
+
   #environment.sessionVariables.NIXOS_OZONE_WL = "1"; # for electron apps
   #environment.sessionVariables.OBSIDIAN_USE_WAYLAND = "1";
-  #environment.sessionVariables.QT_QPA_PLATFORM = "wayland"; # for qt apps
+  
   
 
   # Configure keymap in X11
@@ -224,7 +226,7 @@
   qt.enable = true;
   
   environment.systemPackages = with pkgs; [
-    davinci-resolve
+    #davinci-resolve
     steam-run
     ffmpeg_5-full
     imagemagick
