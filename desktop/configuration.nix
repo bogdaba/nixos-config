@@ -113,18 +113,24 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
 
   # Wayland
-  services.xserver.displayManager.gdm.wayland = false;
+  #services.xserver.displayManager.gdm.wayland = false;
   #programs.xwayland.enable = true;
   #environment.sessionVariables.QT_QPA_PLATFORM = "wayland"; # for qt apps
 
   #environment.sessionVariables.NIXOS_OZONE_WL = "1"; # for electron apps
   #environment.sessionVariables.OBSIDIAN_USE_WAYLAND = "1";
   
-  
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -209,7 +215,7 @@
       strawberry
       #amarok # doesn't work
       #cozy # flatpak?
-      jetbrains.pycharm-community-src
+      jetbrains.pycharm-community
       palemoon-bin
       nomacs
       wacomtablet
@@ -223,7 +229,6 @@
   enable = true;
   };
 
-  qt.enable = true;
   
   environment.systemPackages = with pkgs; [
     #davinci-resolve
@@ -233,7 +238,21 @@
     xorg.xprop
     #chromium
     obsidian
-    tts
+    #tts
+    safeeyes
+    workrave
+    stretchly
+    emacs
+    ripgrep
+    coreutils
+    fd
+    clang
+    handbrake
+    nixfmt
+    libvterm
+    gnumake
+    cmake
+    libtool
   ];
 
   services.flatpak.enable = true;
