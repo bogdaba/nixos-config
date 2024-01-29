@@ -18,7 +18,7 @@ environment.systemPackages = with pkgs; [
   mc
   git
   keepassxc
-  firefox
+  #firefox
   #obsidian
   gnome.gnome-tweaks
   gnomeExtensions.vertical-workspaces # not sure if this does anything
