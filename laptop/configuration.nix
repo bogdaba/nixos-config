@@ -15,8 +15,8 @@
     # My modules
     ../modules/env.nix
     ../modules/fonts.nix
-    ../modules/programs.nix
     ../modules/shell.nix
+    ../modules/vscode.nix
   ];
   
   home-manager = {
@@ -115,7 +115,6 @@
     description = "bork";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      onlyoffice-bin
     ];
   };
 
@@ -139,9 +138,36 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   obsidian
-  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
   emacs
+  vim 
+  wget
+  calibre
+  hledger
+  qimgv
+  anki-bin # the other one is outdated
+  libsForQt5.okular
+  doublecmd
+  syncplay
+  mc
+  git
+  keepassxc
+  firefox
+  #obsidian
+  gnome.gnome-tweaks
+  gnomeExtensions.vertical-workspaces # not sure if this does anything
+  p7zip
+  unzip
+  qbittorrent
+  celluloid
+  mpv
+  neofetch
+  mullvad-browser
+  libreoffice
+  copyq
+  yt-dlp
+  speedcrunch
+  qpdf
+  onlyoffice-bin
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
