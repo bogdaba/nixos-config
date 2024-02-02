@@ -3,6 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { inputs, config, pkgs, ... }:
+
+let
+  pkgsStable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+in
+
 {
   imports = [
     # Import home-manager's NixOS module
