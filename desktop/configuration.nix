@@ -12,38 +12,19 @@
     ./hardware-configuration.nix
 
     # My modules
-    ../modules/env.nix
+    # ../modules/env.nix
     ../modules/fonts.nix
-    ../modules/programs.nix
-    ../modules/shell.nix
+    # ../modules/programs.nix
+    # ../modules/shell.nix
     ../modules/nvidia.nix
-    ../modules/python.nix
+    # ../modules/python.nix
   ];
   
-
   nixpkgs = {
-    # You can add overlays here
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      #outputs.overlays.additions
-      #outputs.overlays.modifications
-      #outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-      (final: prev: {
-        obsidian-wayland = prev.obsidian.override {electron = final.electron_24;};
-      })
     ];
   };
-  # test
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -54,41 +35,21 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
-  #nix.gc.automatic = true;
-  
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   # Bootloader.
   #boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Due to issues with detecting bootable drives by mobo better not to touch this
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.grub.efiSupport = true;
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.device = "nodev";
-  #boot.loader.grub.useOSProber = true;
-  
-
   boot.supportedFilesystems = [ "ntfs" ];
 
-
-  #fileSystems."/mnt/hdd" =
-  #{ device = "/dev/sdb2/FE3425B034256CB9";
-  #    fsType = "ntfs-3g"; 
-  #    options = [ "rw" "uid=theUidOfYourUser"];
-  #};
-
   networking.hostName = "desktop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Europe/Warsaw";
   time.hardwareClockInLocalTime = true;
 
@@ -107,30 +68,9 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Graphics
-  hardware.enableAllFirmware = true;
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
-
-  # Wayland
-  #services.xserver.displayManager.gdm.wayland = false;
-  #programs.xwayland.enable = true;
-  #environment.sessionVariables.QT_QPA_PLATFORM = "wayland"; # for qt apps
-
-  #environment.sessionVariables.NIXOS_OZONE_WL = "1"; # for electron apps
-  #environment.sessionVariables.OBSIDIAN_USE_WAYLAND = "1";
-  
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -138,6 +78,9 @@
     xkbVariant = "";
   };
   
+  # Configure console keymap
+  console.keyMap = "pl2";
+
   i18n = {
     inputMethod = {
       enabled = "fcitx5"; #or ibus
@@ -148,8 +91,6 @@
       ];
     };
   };
-  # Configure console keymap
-  console.keyMap = "pl2";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -178,107 +119,82 @@
     isNormalUser = true;
     description = "bork";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
-      krita
-      # discord
-      blender
-      gimp-with-plugins
-      godot_4
-      brave
-      onlyoffice-bin
-      wtype
-      libsForQt5.kdenlive
-      # krusader stuff
-      krusader
-      findutils
-      libsForQt5.kio-extras
-      libsForQt5.kget
-      kompare # or kdiff3
-      krename
-      thunderbird
-      gnutar
-      gzip
-      bzip2
-      xz
-      zip
-      unzip
-      rar
-      rpm
-      dpkg
-      arj
-      lha
-      p7zip
-      libsForQt5.breeze-qt5 #hopefully this fixes icons
-      libsForQt5.breeze-gtk
-      libsForQt5.breeze-icons
-      #
-      strawberry
-      #amarok # doesn't work
-      #cozy # flatpak?
-      jetbrains.pycharm-community
-      palemoon-bin
-      nomacs
-      wacomtablet
-      libwacom
-      xf86_input_wacom
-      ungoogled-chromium
     ];
   };
 
-  programs.steam = {
-  enable = true;
-  };
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "bork";
 
-  
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
-    #davinci-resolve
-    steam-run
-    ffmpeg_5-full
-    imagemagick
-    xorg.xprop
-    #chromium
-    obsidian
-    #tts
-    safeeyes
-    workrave
-    stretchly
+    vim
+    wget
+    kate
+    firefox
+
     emacs
     ripgrep
+    # optional dependencies
     coreutils
     fd
     clang
-    handbrake
+    findutils
+    shellcheck
+    multimarkdown
     nixfmt
-    libvterm
-    gnumake
     cmake
+    libvterm
     libtool
+    gnumake
+    gcc
+
+    keepassxc
+    git
+    obsidian
+    vscode-fhs
+    syncplay
+    davinci-resolve
+    krita
+    blender
+    godot_4
+
+    krusader
+    thunderbird
+    krename
+    kdiff3
+    zip
+    _7zz
+    rar
+
+    curl
+    anki
+    mpv
+    ffmpeg
+    pkgsStable.tts
+    python3
+    poetry
+    handbrake
+    hledger
+    # pass
+    libsForQt5.plasma-browser-integration
   ];
 
   services.flatpak.enable = true;
 
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+  programs.zsh.enable = true;
+
+  programs.steam.enable = true;
+
+  # services.mullvad-vpn.enable = true;
+  # services.mullvad-vpn.package = pkgs.mullvad-vpn;
    
   # Virtualisation
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "bork";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-    "electron-24.8.6"
-    ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
