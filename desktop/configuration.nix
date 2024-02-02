@@ -189,6 +189,7 @@ in
     yt-dlp
     qpdf
     doublecmd
+    calibre
   ];
 
   programs.firefox = {
