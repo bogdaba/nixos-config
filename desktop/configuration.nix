@@ -78,9 +78,9 @@ in
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "pl";
-    xkbVariant = "";
+    variant = "";
   };
   
   # Configure console keymap
@@ -138,7 +138,7 @@ in
     vim
     wget
     kate
-    firefox
+    # firefox
 
     emacs
     ripgrep
@@ -184,12 +184,28 @@ in
     handbrake
     hledger
     # pass
-    libsForQt5.plasma-browser-integration
+    # libsForQt5.plasma-browser-integration
   ];
+
+  programs.firefox = {
+    enable = true;
+    # nativeMessagingHosts.packages = [
+      # pkgs.plasma-browser-integration
+    # ];
+  };
+
+  # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
   services.flatpak.enable = true;
 
-  programs.zsh.enable = true;
+  # environment.pathsToLink = [ "/share/zsh" ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+  };
+
+  services.locate.enable = true;
 
   programs.steam.enable = true;
 

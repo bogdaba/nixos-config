@@ -46,6 +46,17 @@
    # };
   };
 
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      ll = "ls -l";
+      update = "sudo nixos-rebuild switch --flake /home/bork/nixos-config";
+      test = "echo \"test\"";
+    };
+    history.size = 15000;
+    history.path = "${config.xdg.dataHome}/.histfile";
+  };
+
   # xdg.userDirs = {
   # enable = true;
   # desktop      = "${config.home.homeDirectory}/desktop";
