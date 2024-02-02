@@ -4,6 +4,10 @@
 
 { inputs, config, pkgs, ... }:
 
+let
+  pkgsStable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+in
+
 {
   imports = [
     # Import home-manager's NixOS module
@@ -13,12 +17,17 @@
     ./hardware-configuration.nix
 
     # My modules
-    ../modules/env.nix
+    # ../modules/env.nix
     ../modules/fonts.nix
-    ../modules/shell.nix
-    ../modules/vscode.nix
+    # ../modules/shell.nix
+    # ../modules/vscode.nix
   ];
-  
+
+  nixpkgs = {
+    overlays = [
+    ];
+  };
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -27,9 +36,6 @@
     };
   };
 
-  programs.zsh = {
-    enable = true;
-  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Bootloader.
@@ -118,7 +124,6 @@
     ];
   };
 
-  services.flatpak.enable = true;
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
@@ -137,38 +142,76 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  obsidian
-  emacs
-  vim 
-  wget
-  calibre
-  hledger
-  qimgv
-  anki-bin # the other one is outdated
-  libsForQt5.okular
-  doublecmd
-  syncplay
-  mc
-  git
-  keepassxc
-  firefox
-  #obsidian
-  gnome.gnome-tweaks
-  gnomeExtensions.vertical-workspaces # not sure if this does anything
-  p7zip
-  unzip
-  qbittorrent
-  celluloid
-  mpv
-  neofetch
-  mullvad-browser
-  libreoffice
-  copyq
-  yt-dlp
-  speedcrunch
-  qpdf
-  onlyoffice-bin
+    obsidian
+
+    emacs
+    ripgrep
+    # optional dependencies
+    coreutils
+    fd
+    clang
+    findutils
+    shellcheck
+    multimarkdown
+    nixfmt
+    cmake
+    libvterm
+    libtool
+    gnumake
+    gcc
+
+    krusader
+    thunderbird
+    krename
+    kdiff3
+    zip
+    _7zz
+    rar
+
+    vim
+    wget
+    calibre
+    hledger
+    qimgv
+    anki-bin # the other one is outdated
+    libsForQt5.okular
+    doublecmd
+    syncplay
+    mc
+    git
+    keepassxc
+    # firefox
+    #obsidian
+    gnome.gnome-tweaks
+    gnomeExtensions.vertical-workspaces # not sure if this does anything
+    qbittorrent
+    mpv
+    neofetch
+    libreoffice
+    copyq
+    yt-dlp
+    speedcrunch
+    qpdf
+    onlyoffice-bin
+    vscode-fhs
   ];
+
+  programs.firefox = {
+    enable = true;
+  };
+
+  # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+
+  services.flatpak.enable = true;
+
+  # environment.pathsToLink = [ "/share/zsh" ];
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+  };
+
+  services.locate.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

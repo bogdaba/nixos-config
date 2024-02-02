@@ -53,8 +53,12 @@
       update = "sudo nixos-rebuild switch --flake /home/bork/nixos-config";
       test = "echo \"test\"";
     };
-    history.size = 15000;
-    history.path = "${config.xdg.dataHome}/.histfile";
+    history = {
+      size = 15000;
+      path = "${config.xdg.dataHome}/.histfile";
+      share = true;
+    };
+
   };
 
   # xdg.userDirs = {

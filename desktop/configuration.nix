@@ -41,9 +41,6 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
 
   # Bootloader.
   #boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -133,6 +130,9 @@ in
   services.xserver.displayManager.autoLogin.user = "bork";
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   environment.systemPackages = with pkgs; [
     vim
@@ -185,13 +185,13 @@ in
     hledger
     # pass
     # libsForQt5.plasma-browser-integration
+    speedcrunch
+    qbittorrent
+    yt-dlp
   ];
 
   programs.firefox = {
     enable = true;
-    # nativeMessagingHosts.packages = [
-      # pkgs.plasma-browser-integration
-    # ];
   };
 
   # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
