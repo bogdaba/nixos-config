@@ -195,6 +195,7 @@ in
     qpdf
     onlyoffice-bin
     vscode-fhs
+    doublecmd
   ];
 
   programs.firefox = {

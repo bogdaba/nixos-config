@@ -184,10 +184,11 @@ in
     handbrake
     hledger
     # pass
-    # libsForQt5.plasma-browser-integration
     speedcrunch
     qbittorrent
     yt-dlp
+    qpdf
+    doublecmd
   ];
 
   programs.firefox = {
