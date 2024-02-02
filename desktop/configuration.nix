@@ -43,7 +43,7 @@
       })
     ];
   };
-
+  # test
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
