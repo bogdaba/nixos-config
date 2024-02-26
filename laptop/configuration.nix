@@ -124,7 +124,6 @@ in
     #packages = with pkgs; [
     #];
   };
-# test
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
