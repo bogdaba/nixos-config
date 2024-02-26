@@ -174,7 +174,7 @@ in
     syncplay
     davinci-resolve
     krita
-    blender
+    pkgsStable.blender
     godot_4
 
     krusader
