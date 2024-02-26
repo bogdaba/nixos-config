@@ -5,7 +5,9 @@
 { inputs, config, pkgs, ... }:
 
 let
-  pkgsStable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+  pkgsStable = (import inputs.nixpkgs-stable {
+    config = { allowUnfree = true; };
+  }).legacyPackages.${pkgs.system};
 in
 
 {
@@ -129,7 +131,6 @@ in
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "bork";
 
-  nixpkgs-stable.config.allowUnfree = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
