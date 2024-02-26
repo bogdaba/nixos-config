@@ -121,7 +121,7 @@ in
     isNormalUser = true;
     description = "bork";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
+    #shell = pkgs.zsh;
     packages = with pkgs; [
     ];
   };
@@ -184,7 +184,6 @@ in
     zip
     _7zz
     rar
-
     curl
     anki
     mpv
