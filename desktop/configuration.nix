@@ -17,7 +17,7 @@ in
     ./hardware-configuration.nix
 
     # My modules
-    # ../modules/env.nix
+    ../modules/env.nix
     ../modules/fonts.nix
     # ../modules/programs.nix
     # ../modules/shell.nix
@@ -204,6 +204,7 @@ in
     libreoffice-qt
     onlyoffice-bin
     jumpapp
+    todoist-electron
   ];
 
   programs.firefox = {
@@ -214,12 +215,12 @@ in
 
   services.flatpak.enable = true;
 
-  environment.pathsToLink = [ "/share/zsh" ];
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-  };
+  #environment.pathsToLink = [ "/share/zsh" ];
+  #programs.zsh = {
+  #  enable = true;
+  #  enableCompletion = true;
+  #  autosuggestions.enable = true;
+  #};
 
   services.locate.enable = true;
 

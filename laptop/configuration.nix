@@ -17,7 +17,7 @@ in
     ./hardware-configuration.nix
 
     # My modules
-    # ../modules/env.nix
+    ../modules/env.nix
     ../modules/fonts.nix
     # ../modules/shell.nix
     # ../modules/vscode.nix
@@ -206,12 +206,12 @@ in
 
   services.flatpak.enable = true;
 
-  environment.pathsToLink = [ "/share/zsh" ];
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-  };
+#  environment.pathsToLink = [ "/share/zsh" ];
+#  programs.zsh = {
+#    enable = true;
+#    enableCompletion = true;
+#    autosuggestions.enable = true;
+#  };
 
   services.locate.enable = true;
 
