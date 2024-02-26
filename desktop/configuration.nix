@@ -201,6 +201,9 @@ in
     qpdf
     doublecmd
     calibre
+    libreoffice-qt
+    onlyoffice-bin
+    jumpapp
   ];
 
   programs.firefox = {
