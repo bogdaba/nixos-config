@@ -4,10 +4,15 @@
 
 { inputs, config, pkgs, ... }:
 
+#let
+#  pkgsStable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+#in
+
 let
-  pkgsStable = (import inputs.nixpkgs-stable {
+  pkgsStable = import inputs.nixpkgs-stable {
+    system = pkgs.system;
     config = { allowUnfree = true; };
-  }).legacyPackages.${pkgs.system};
+  };
 in
 
 {
