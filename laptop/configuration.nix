@@ -195,6 +195,8 @@ in
     onlyoffice-bin
     vscode-fhs
     doublecmd
+    jumpapp
+    todoist-electron
   ];
 
   programs.firefox = {
