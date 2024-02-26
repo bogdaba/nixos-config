@@ -129,6 +129,7 @@ in
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "bork";
 
+  nixpkgs-stable.config.allowUnfree = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
