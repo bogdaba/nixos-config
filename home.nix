@@ -38,9 +38,14 @@
     };
   };
 
+  programs.bash.enable = true;
+
   home = {
     username = "bork";
     homeDirectory = "/home/bork";
+    sessionPath = [
+      "${config.home.homeDirectory}/.config/emacs/bin"
+    ];
    # shellAliases = {
    #   
    # };
