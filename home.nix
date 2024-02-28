@@ -40,12 +40,30 @@
 
   programs.bash.enable = true;
 
+  home.packages = with pkgs; [
+    # Add other packages you want to install here
+  ];
+
   home = {
     username = "bork";
     homeDirectory = "/home/bork";
     sessionPath = [
       "${config.home.homeDirectory}/.config/emacs/bin"
     ];
+    file."bin/brk-rsync-home" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+
+      # Define source and destination
+      SOURCE="/home/bork"
+      DEST="/mnt/hdd/backups/home-nixos"
+
+      # Run rsync to copy files
+      rsync -ahvAE --delete --exclude='.cache' --stats $SOURCE $DEST 2>&1 | tee "$HOME/log/drive-mirroring.log"
+    '';
+  };
+
    # shellAliases = {
    #   
    # };

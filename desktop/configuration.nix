@@ -149,6 +149,23 @@ in
     "electron-25.9.0"
   ];
 
+  systemd.services.drive-mirroring = {
+    description = "Drive sync";
+    script = ''
+      /home/bork/bin/brk-rsync-home
+    '';
+    path = with pkgs; [ rsync ];
+  };
+
+  systemd.timers.drive-mirroring = {
+    description = "Drive sync";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+  };
+
   # environment.homeBinInPath = true;
   # environment.sessionVariables = {
   #   # MOZ_ENABLE_WAYLAND = "1"; # firefox
