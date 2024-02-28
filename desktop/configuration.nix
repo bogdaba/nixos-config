@@ -81,6 +81,14 @@ in
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  # GTK applications
+  programs.dconf.enable = true;
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "pl";
