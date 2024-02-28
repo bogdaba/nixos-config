@@ -173,7 +173,7 @@ in
     calibre
     hledger
     qimgv
-    anki-bin # the other one is outdated
+    anki # the other one is outdated
     libsForQt5.okular
     doublecmd
     syncplay
@@ -194,10 +194,10 @@ in
     qpdf
     onlyoffice-bin
     vscode-fhs
-    doublecmd
     jumpapp
     todoist-electron
     libwebp
+    fish
   ];
 
   programs.firefox = {
