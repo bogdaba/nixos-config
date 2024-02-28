@@ -205,7 +205,7 @@ in
     qbittorrent
     yt-dlp
     qpdf
-    doublecmd
+    pkgsStable.doublecmd
     calibre
     libreoffice-qt
     onlyoffice-bin
