@@ -211,6 +211,9 @@ in
     onlyoffice-bin
     jumpapp
     todoist-electron
+    flameshot
+    fish
+    libwebp
   ];
 
   programs.firefox = {

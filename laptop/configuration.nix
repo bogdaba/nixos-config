@@ -197,6 +197,7 @@ in
     doublecmd
     jumpapp
     todoist-electron
+    libwebp
   ];
 
   programs.firefox = {
