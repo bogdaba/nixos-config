@@ -152,9 +152,9 @@ in
   systemd.services.drive-mirroring = {
     description = "Drive sync";
     script = ''
-      /home/bork/bin/brk-rsync-home
+      /home/bork/bin/brk-home-backup
     '';
-    path = with pkgs; [ rsync ];
+    path = with pkgs; [ bash rsync ];
   };
 
   systemd.timers.drive-mirroring = {
