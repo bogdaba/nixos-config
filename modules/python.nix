@@ -1,11 +1,11 @@
 { inputs, config, pkgs, ... }:
 
 let
-  my-python-packages = ps: with ps; [
-    pandas
-    requests
-    beautifulsoup4  # other python packages
-  ];
+  # my-python-packages = ps: with ps; [
+  #   pandas
+  #   requests
+  #   beautifulsoup4  # other python packages
+  # ];
 in
 
 {
@@ -33,17 +33,17 @@ in
     #];
   #};
 
-  programs.direnv.enable = true;
+  # programs.direnv.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    (python3.withPackages my-python-packages)
-    python3Full
-    python312
-    poetry
-    #python312Packages.fastjsonschema
-    #python312Packages.poetry-core
-    #python311Packages.fastjsonschema
-    #python311Packages.poetry-core
-    
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   (python3.withPackages my-python-packages)
+  #   python3Full
+  #   python312
+  #   poetry
+  #   #python312Packages.fastjsonschema
+  #   #python312Packages.poetry-core
+  #   #python311Packages.fastjsonschema
+  #   #python311Packages.poetry-core
+
+  # ];
 }
