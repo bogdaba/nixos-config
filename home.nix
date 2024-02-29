@@ -50,19 +50,27 @@
     sessionPath = [
       "${config.home.homeDirectory}/.config/emacs/bin"
     ];
-    file."bin/brk-rsync-home" = {
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
+  #   file."bin/brk-rsync-home" = {
+  #   executable = true;
+  #   text = ''
+  #     #!/usr/bin/env bash
 
-      # Define source and destination
-      SOURCE="/home/bork"
-      DEST="/mnt/hdd/backups/home-nixos"
+  #     # Define source and destination
+  #     SOURCE="/home/bork"
+  #     DEST="/mnt/hdd/backups/home-nixos"
 
-      # Run rsync to copy files
-      rsync -ahvAE --delete --exclude='.cache' --stats $SOURCE $DEST 2>&1 | tee "$HOME/log/drive-mirroring.log"
-    '';
-  };
+  #     # Define directories to exclude
+  #     EXCLUDE_DIRS=(".local/share/Steam" ".cache")
+  #     EXCLUDES=()
+
+  #     for dir in "\${EXCLUDE_DIRS[@]}"; do
+  #       EXCLUDES+=("--exclude=$dir")
+  #     done
+
+  #     # Run rsync to copy files
+  #     rsync -ahAE --progress --delete "${EXCLUDES[@]}" --stats $SOURCE $DEST 2>&1 | tee "$HOME/log/drive-mirroring.log"
+  #   '';
+  # };
 
    # shellAliases = {
    #   

@@ -239,6 +239,7 @@ in
     flameshot
     fish
     libwebp
+    neovim
   ];
 
   programs.firefox = {
