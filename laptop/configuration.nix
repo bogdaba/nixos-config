@@ -186,6 +186,7 @@ in
     gnomeExtensions.vertical-workspaces # not sure if this does anything
     qbittorrent
     mpv
+    python3
     neofetch
     libreoffice
     copyq
