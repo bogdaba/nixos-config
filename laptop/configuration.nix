@@ -147,6 +147,7 @@ in
     emacs
     ripgrep
     # optional dependencies
+    emacsPackages.vterm
     coreutils
     fd
     clang

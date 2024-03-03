@@ -29,7 +29,7 @@ in
     # ../modules/programs.nix
     # ../modules/shell.nix
     ../modules/nvidia.nix
-    # ../modules/python.nix
+    ../modules/python.nix
   ];
   
   nixpkgs = {
@@ -186,6 +186,7 @@ in
     emacs
     ripgrep
     # optional dependencies
+    emacsPackages.vterm
     coreutils
     fd
     clang
@@ -240,6 +241,7 @@ in
     fish
     libwebp
     neovim
+    vesktop
   ];
 
   programs.firefox = {
