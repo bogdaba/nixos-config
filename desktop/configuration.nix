@@ -241,7 +241,8 @@ in
     fish
     libwebp
     neovim
-    vesktop
+    # vesktop
+    # wrapGAppsHook # doesn't do anything on its own
   ];
 
   programs.firefox = {
