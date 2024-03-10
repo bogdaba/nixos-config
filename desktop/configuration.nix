@@ -183,7 +183,7 @@ in
     kate
     # firefox
 
-    emacs
+    emacs29
     ripgrep
     # optional dependencies
     emacsPackages.vterm
