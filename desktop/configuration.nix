@@ -193,6 +193,7 @@ in
     gnomeExtensions.ddterm
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.kimpanel
+    xorg.xeyes
     # emacs29
     ripgrep
     # optional dependencies
