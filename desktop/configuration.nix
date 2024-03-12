@@ -77,17 +77,21 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
+  # services.xserver.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
 
   # GTK applications
-  programs.dconf.enable = true;
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-  };
+  # programs.dconf.enable = true;
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gnome";
+  #   style = "breeze";
+  # };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -143,6 +147,8 @@ in
 
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "bork";
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
@@ -176,14 +182,18 @@ in
   #   # PATH = "/home/bork/scripts";
   #   # QT_QPA_PLATFORM = "wayland";
   # };
-
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment.systemPackages = with pkgs; [
     vim
     wget
     kate
     # firefox
-
-    emacs29
+    gnomeExtensions.appindicator
+    gnome.gnome-tweaks
+    gnomeExtensions.ddterm
+    gnomeExtensions.vertical-workspaces
+    gnomeExtensions.kimpanel
+    # emacs29
     ripgrep
     # optional dependencies
     emacsPackages.vterm
@@ -247,6 +257,11 @@ in
 
   programs.firefox = {
     enable = true;
+  };
+
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29;
   };
 
   # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
