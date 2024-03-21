@@ -5,7 +5,7 @@
 { inputs, config, pkgs, ... }:
 
 let
-  pkgsStable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+  pkgsUnstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
 in
 
 {
@@ -142,7 +142,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    obsidian
+    pkgsUnstable.obsidian
 
     emacs
     ripgrep
@@ -174,7 +174,7 @@ in
     calibre
     hledger
     qimgv
-    anki # the other one is outdated
+    pkgsUnstable.anki # the other one is outdated
     libsForQt5.okular
     doublecmd
     syncplay
