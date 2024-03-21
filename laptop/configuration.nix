@@ -5,7 +5,10 @@
 { inputs, config, pkgs, ... }:
 
 let
-  pkgsUnstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config = { allowUnfree = true; };
+  };
 in
 
 {
