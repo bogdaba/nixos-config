@@ -9,7 +9,7 @@
 #in
 
 let
-  pkgsStable = import inputs.nixpkgs-stable {
+  pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
     config = { allowUnfree = true; };
   };
@@ -83,7 +83,9 @@ in
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
+  services.xserver.displayManager.gdm.wayland = false;
+  # programs.xwayland.enable = true;
+  # hardware.nvidia.forceFullCompositionPipeline = true;
 
   # GTK applications
   # programs.dconf.enable = true;
@@ -139,7 +141,7 @@ in
   users.users.bork = {
     isNormalUser = true;
     description = "bork";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
     #shell = pkgs.zsh;
     packages = with pkgs; [
     ];
@@ -213,13 +215,13 @@ in
 
     keepassxc
     git
-    obsidian
+    pkgsUnstable.obsidian
     vscode-fhs
     syncplay
     davinci-resolve
-    krita
-    pkgsStable.blender
-    godot_4
+    pkgsUnstable.krita
+    blender
+    pkgsUnstable.godot_4
 
     krusader
     thunderbird
@@ -229,10 +231,10 @@ in
     _7zz
     rar
     curl
-    anki
+    pkgsUnstable.anki
     mpv
     ffmpeg
-    pkgsStable.tts
+    tts
     python3
     poetry
     handbrake
@@ -242,7 +244,7 @@ in
     qbittorrent
     yt-dlp
     qpdf
-    pkgsStable.doublecmd
+    doublecmd
     calibre
     libreoffice-qt
     onlyoffice-bin
@@ -252,13 +254,20 @@ in
     fish
     libwebp
     neovim
+    nnn
+    rclone
+    mc
+    ranger
     # vesktop
     # wrapGAppsHook # doesn't do anything on its own
+    # android-tools
   ];
 
   programs.firefox = {
     enable = true;
   };
+
+  programs.adb.enable = true;
 
   services.emacs = {
     enable = true;
