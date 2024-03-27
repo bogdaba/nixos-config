@@ -191,6 +191,7 @@ in
     kate
     # firefox
     gnomeExtensions.appindicator
+    gnomeExtensions.tiling-assistant
     gnome.gnome-tweaks
     gnomeExtensions.ddterm
     gnomeExtensions.vertical-workspaces
@@ -258,6 +259,19 @@ in
     rclone
     mc
     ranger
+    pkgsUnstable.cozy
+    deja-dup
+    pkgsUnstable.mullvad-vpn
+    pkgsUnstable.mullvad-browser
+    pdfcrack
+    john
+    johnny
+    hashcat
+    cudaPackages.cuda_cudart
+    conky
+    lm_sensors
+    netdata
+    htop
     # vesktop
     # wrapGAppsHook # doesn't do anything on its own
     # android-tools
@@ -277,6 +291,8 @@ in
   # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
   services.flatpak.enable = true;
+
+  services.monit.enable = true;
 
   #environment.pathsToLink = [ "/share/zsh" ];
   #programs.zsh = {
