@@ -246,7 +246,7 @@ in
     yt-dlp
     qpdf
     doublecmd
-    calibre
+    pkgsUnstable.calibre
     libreoffice-qt
     onlyoffice-bin
     jumpapp

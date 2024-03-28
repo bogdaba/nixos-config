@@ -174,7 +174,7 @@ in
 
     vim
     wget
-    calibre
+    pkgsUnstable.calibre
     hledger
     qimgv
     pkgsUnstable.anki # the other one is outdated
