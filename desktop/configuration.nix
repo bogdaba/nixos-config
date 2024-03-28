@@ -217,7 +217,7 @@ in
     keepassxc
     git
     pkgsUnstable.obsidian
-    vscode-fhs
+    pkgsUnstable.vscode-fhs
     syncplay
     davinci-resolve
     pkgsUnstable.krita
