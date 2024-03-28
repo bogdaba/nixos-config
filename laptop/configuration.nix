@@ -187,7 +187,12 @@ in
     # firefox
     #obsidian
     gnome.gnome-tweaks
-    gnomeExtensions.vertical-workspaces # not sure if this does anything
+    gnomeExtensions.appindicator
+    gnomeExtensions.tiling-assistant
+    gnome.gnome-tweaks
+    gnomeExtensions.ddterm
+    gnomeExtensions.vertical-workspaces
+    gnomeExtensions.kimpanel
     qbittorrent
     mpv
     python3
