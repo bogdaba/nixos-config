@@ -221,6 +221,7 @@ in
     syncplay
     davinci-resolve
     pkgsUnstable.krita
+    gmic-qt
     blender
     pkgsUnstable.godot_4
 
@@ -272,6 +273,15 @@ in
     lm_sensors
     netdata
     htop
+    gmic-qt
+    pkgsUnstable.discordchatexporter-cli
+    gimp-with-plugins
+    gimpPlugins.gmic
+    pkgsUnstable.copyq
+    ranger
+    kitty
+    pkgsUnstable.digikam
+
     # vesktop
     # wrapGAppsHook # doesn't do anything on its own
     # android-tools
