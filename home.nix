@@ -118,6 +118,45 @@
 
   services.syncthing.enable = true;
 
+  #services.mpd = {
+  #  enable = true;
+  #  musicDirectory = "/home/bork/Music";
+  #  extraConfig = ''
+  #    user "bork"
+  #    bind_to_address "127.0.0.1"
+  #    port "6600"
+  #    playlist_directory "/home/bork/.config/mpd/playlists"
+  #    db_file "/home/bork/.config/mpd/mpd.db"
+  #    log_file "/home/bork/.config/mpd/mpd.log"
+  #    pid_file "/home/bork/.config/mpd/mpd.pid"
+  #    state_file "/home/bork/.config/mpd/mpdstate"
+  #    restore_paused "yes"
+  #    max_playlist_length "400000"
+  #
+  #    audio_output {
+  #            type            "pipewire"
+  #            name            "PipeWire Sound Server"
+  #      }
+#
+  #      audio_output {
+  #          type                    "fifo"
+  #          name                    "FIFO"
+  #          path                    "/tmp/mpd.fifo"
+  #          format                  "44100:16:2"
+  #      }
+  #    auto_update "yes"
+  #  '';
+  #};
+#
+  #programs.ncmpcpp = {
+  #  enable = true;
+  #  mpdMusicDir = "/home/bork/Music";
+  #  settings = {
+  #    mpd_host = "127.0.0.1";
+  #    mpd_port = 6600;
+  #  };
+  #};
+  
   #programs.bash.shellAliases = {
   #  nixsus = "sudo nixos-rebuild switch --flake /home/bork/nix-config#desktop";
   #};

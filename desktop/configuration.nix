@@ -281,6 +281,11 @@ in
     ranger
     kitty
     pkgsUnstable.digikam
+    #mpd
+    #ncmpcpp
+    #rhythmbox
+    strawberry
+    #rcs
 
     # vesktop
     # wrapGAppsHook # doesn't do anything on its own
@@ -302,7 +307,9 @@ in
 
   services.flatpak.enable = true;
 
-  services.monit.enable = true;
+  # services.monit.enable = true;
+
+  # services.mpd.enable = true;
 
   #environment.pathsToLink = [ "/share/zsh" ];
   #programs.zsh = {
