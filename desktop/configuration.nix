@@ -235,7 +235,7 @@ in
     curl
     pkgsUnstable.anki
     mpv
-    ffmpeg
+    pkgsUnstable.ffmpeg_7-full
     tts
     python3
     poetry
@@ -281,6 +281,7 @@ in
     ranger
     kitty
     pkgsUnstable.digikam
+    zotero
     #mpd
     #ncmpcpp
     #rhythmbox
@@ -290,9 +291,17 @@ in
     # vesktop
     # wrapGAppsHook # doesn't do anything on its own
     # android-tools
+    pkgsUnstable.aseprite
+    neofetch
+    gnumeric
+    pkgsUnstable.sc-im
   ];
 
   programs.firefox = {
+    enable = true;
+  };
+
+  programs.neovim = {
     enable = true;
   };
 
