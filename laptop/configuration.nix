@@ -79,8 +79,8 @@ in
   services.xserver.enable = true;
 
    # Wayaland
-  services.xserver.displayManager.gdm.wayland = false;
-  #programs.xwayland.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
+  programs.xwayland.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
