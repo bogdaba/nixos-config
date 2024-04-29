@@ -205,7 +205,7 @@ in
     onlyoffice-bin
     vscode-fhs
     jumpapp
-    pkgsUnstable.todoist-electron
+    todoist-electron
     libwebp
     fish
   ];
