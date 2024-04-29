@@ -251,7 +251,7 @@ in
     libreoffice-qt
     onlyoffice-bin
     jumpapp
-    todoist-electron
+    pkgsUnstable.todoist-electron
     flameshot
     fish
     libwebp
