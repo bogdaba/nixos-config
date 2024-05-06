@@ -11,7 +11,12 @@
 let
   pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true; 
+      permittedInsecurePackages = [
+        "python3.11-django-3.1.14"
+      ];
+    };
   };
 in
 
@@ -287,14 +292,19 @@ in
     #rhythmbox
     strawberry
     #rcs
+    mangohud
+    #brave
 
-    # vesktop
+    vesktop
     # wrapGAppsHook # doesn't do anything on its own
     # android-tools
     pkgsUnstable.aseprite
     neofetch
     gnumeric
     pkgsUnstable.sc-im
+    pkgsUnstable.archivebox
+    pkgsUnstable.single-file-cli
+    pkgsUnstable.passmark-performancetest
   ];
 
   programs.firefox = {
