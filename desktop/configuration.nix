@@ -94,11 +94,11 @@ in
 
   # GTK applications
   # programs.dconf.enable = true;
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gnome";
-  #   style = "breeze";
-  # };
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -226,6 +226,7 @@ in
     syncplay
     davinci-resolve
     pkgsUnstable.krita
+    pkgsUnstable.krita-plugin-gmic
     gmic-qt
     blender
     pkgsUnstable.godot_4
@@ -292,10 +293,11 @@ in
     #rhythmbox
     strawberry
     #rcs
-    mangohud
+    #mangohud
     #brave
 
     vesktop
+    beancount
     # wrapGAppsHook # doesn't do anything on its own
     # android-tools
     pkgsUnstable.aseprite
@@ -305,6 +307,12 @@ in
     pkgsUnstable.archivebox
     pkgsUnstable.single-file-cli
     pkgsUnstable.passmark-performancetest
+
+    pkgsUnstable.planify
+    libsForQt5.okular
+    libsForQt5.qt5ct
+    libsForQt5.qtstyleplugin-kvantum
+    lf
   ];
 
   programs.firefox = {

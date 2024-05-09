@@ -48,7 +48,8 @@
     username = "bork";
     homeDirectory = "/home/bork";
     sessionPath = [
-      "${config.home.homeDirectory}/.config/emacs/bin"
+      #"${config.home.homeDirectory}/.config/emacs/bin"
+      "${config.home.homeDirectory}/.emacs.d/bin"
     ];
   #   file."bin/brk-rsync-home" = {
   #   executable = true;
