@@ -298,6 +298,7 @@ in
 
     vesktop
     beancount
+    fava
     # wrapGAppsHook # doesn't do anything on its own
     # android-tools
     pkgsUnstable.aseprite
@@ -313,6 +314,8 @@ in
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
     lf
+    pkgsUnstable.logseq
+    sqlite
   ];
 
   programs.firefox = {
