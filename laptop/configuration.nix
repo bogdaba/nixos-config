@@ -147,7 +147,7 @@ in
   environment.systemPackages = with pkgs; [
     pkgsUnstable.obsidian
 
-    emacs
+    # emacs
     ripgrep
     # optional dependencies
     emacsPackages.vterm
@@ -208,6 +208,7 @@ in
     todoist-electron
     libwebp
     fish
+    sqlite
   ];
 
   programs.firefox = {
@@ -215,6 +216,11 @@ in
   };
 
   # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs29;
+  };
 
   services.flatpak.enable = true;
 
