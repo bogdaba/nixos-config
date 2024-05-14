@@ -253,7 +253,7 @@ in
     yt-dlp
     qpdf
     doublecmd
-    pkgsUnstable.calibre
+    calibre
     libreoffice-qt
     onlyoffice-bin
     jumpapp
@@ -316,6 +316,13 @@ in
     lf
     pkgsUnstable.logseq
     sqlite
+    pkgsUnstable.wezterm
+    pkgsUnstable.qutebrowser
+    brave
+    floorp
+    pandoc
+    chromium
+    pkgsUnstable.backgroundremover
   ];
 
   programs.firefox = {
