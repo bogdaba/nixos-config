@@ -323,6 +323,9 @@ in
     pandoc
     chromium
     pkgsUnstable.backgroundremover
+    pkgsUnstable.ollama
+    sxhkd
+    xorg.xmodmap
   ];
 
   programs.firefox = {
