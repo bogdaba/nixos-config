@@ -12,6 +12,7 @@
   };
   environment.shellAliases = {
     update = "sudo nixos-rebuild switch --flake /home/bork/nixos-config#";
+    pfuah = "shutdown 0";
   };
   environment.variables = {
     # QT_QPA_PLATFORM = "wayland";

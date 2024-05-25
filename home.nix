@@ -38,7 +38,7 @@
     };
   };
 
-  programs.bash.enable = true;
+  # programs.bash.enable = true;
 
   home.packages = with pkgs; [
     # Add other packages you want to install here

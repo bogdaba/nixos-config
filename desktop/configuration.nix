@@ -201,6 +201,7 @@ in
     gnomeExtensions.ddterm
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.kimpanel
+    gnomeExtensions.paperwm
     xorg.xeyes
     # emacs29
     ripgrep
@@ -250,7 +251,7 @@ in
     # pass
     speedcrunch
     qbittorrent
-    yt-dlp
+    pkgsUnstable.yt-dlp
     qpdf
     doublecmd
     calibre
@@ -296,18 +297,18 @@ in
     #mangohud
     #brave
 
-    vesktop
+    # vesktop
     beancount
     fava
     # wrapGAppsHook # doesn't do anything on its own
     # android-tools
-    pkgsUnstable.aseprite
+    aseprite
     neofetch
     gnumeric
     pkgsUnstable.sc-im
     pkgsUnstable.archivebox
     pkgsUnstable.single-file-cli
-    pkgsUnstable.passmark-performancetest
+    # passmark-performancetest
 
     pkgsUnstable.planify
     libsForQt5.okular
@@ -326,6 +327,8 @@ in
     pkgsUnstable.ollama
     sxhkd
     xorg.xmodmap
+    pkgsUnstable.superfile
+    pkgsUnstable.gifski
   ];
 
   programs.firefox = {
