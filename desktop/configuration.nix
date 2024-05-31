@@ -329,6 +329,10 @@ in
     xorg.xmodmap
     pkgsUnstable.superfile
     pkgsUnstable.gifski
+    rclone
+    cryptsetup
+    tor-browser
+    pkgsUnstable.hydrus
   ];
 
   programs.firefox = {
