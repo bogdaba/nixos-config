@@ -152,8 +152,8 @@ in
     ];
   };
 
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "bork";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "bork";
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
@@ -202,6 +202,7 @@ in
     gnomeExtensions.vertical-workspaces
     gnomeExtensions.kimpanel
     gnomeExtensions.paperwm
+    gnomeExtensions.just-perfection
     xorg.xeyes
     # emacs29
     ripgrep
@@ -213,7 +214,8 @@ in
     findutils
     shellcheck
     multimarkdown
-    nixfmt
+    nixfmt-classic
+    nixfmt-rfc-style
     cmake
     libvterm
     libtool
@@ -243,7 +245,7 @@ in
     pkgsUnstable.anki
     mpv
     pkgsUnstable.ffmpeg_7-full
-    tts
+    # tts
     python3
     poetry
     handbrake
@@ -275,7 +277,7 @@ in
     john
     johnny
     hashcat
-    cudaPackages.cuda_cudart
+    # cudaPackages.cuda_cudart
     conky
     lm_sensors
     netdata
