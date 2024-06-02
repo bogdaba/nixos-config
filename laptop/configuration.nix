@@ -116,7 +116,7 @@ in
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bork = {
@@ -129,8 +129,8 @@ in
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "bork";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "bork";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -157,7 +157,8 @@ in
     findutils
     shellcheck
     multimarkdown
-    nixfmt
+    nixfmt-classic
+    nixfmt-rfc-style
     cmake
     libvterm
     libtool
