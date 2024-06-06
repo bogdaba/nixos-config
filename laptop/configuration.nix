@@ -210,12 +210,13 @@ in
     libwebp
     fish
     sqlite
+    tmux
   ];
 
   programs.firefox = {
     enable = true;
   };
-
+  programs.tmux.enable= true;
   # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
   services.emacs = {

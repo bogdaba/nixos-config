@@ -262,7 +262,7 @@ in
     jumpapp
     pkgsUnstable.todoist-electron
     flameshot
-    fish
+    # fish
     libwebp
     neovim
     nnn
@@ -335,11 +335,32 @@ in
     cryptsetup
     tor-browser
     pkgsUnstable.hydrus
+    zellij
+    ueberzug
+    # yazi
+    yazi
+    file
+    ffmpegthumbnailer
+    unar
+    jq
+    poppler
+    fd
+    ripgrep
+    fzf
+    zoxide
+    xclip
+    wl-clipboard
+    xsel
+    # xdragon
+    ripdrag
   ];
 
   programs.firefox = {
     enable = true;
   };
+  programs.tmux.enable= true;
+
+  programs.zsh.enable = true;
 
   programs.neovim = {
     enable = true;
@@ -351,6 +372,9 @@ in
     enable = true;
     package = pkgs.emacs29;
   };
+
+  programs.fish.enable = true;
+  programs.starship.enable = true;
 
   # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
