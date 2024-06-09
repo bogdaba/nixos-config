@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, outputs, lib, config, pkgs, ... }:
 
 #let
 #  pkgsStable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
@@ -35,14 +35,16 @@ in
   
   nixpkgs = {
     overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
     ];
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs outputs; };
     users = {
-      # Import your home-manager configuration
-      bork = import ../home.nix;
+      bork = import ../../home/bork/home.nix;
     };
   };
 
