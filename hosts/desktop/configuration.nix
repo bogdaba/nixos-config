@@ -19,7 +19,7 @@ in
 {
   imports = [
     # Import home-manager's NixOS module
-    inputs.home-manager.nixosModules.home-manager
+    # inputs.home-manager.nixosModules.home-manager
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -31,6 +31,8 @@ in
     # ../modules/shell.nix
     ../common/nvidia.nix
     ../common/python.nix
+    ../common/ollama.nix
+    ../common/emacs.nix
   ];
   
   nixpkgs = {
@@ -41,12 +43,12 @@ in
     ];
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; };
-    users = {
-      bork = import ../../home/bork/home.nix;
-    };
-  };
+  # home-manager = {
+  #   extraSpecialArgs = { inherit inputs outputs; };
+  #   users = {
+  #     bork = import ../../home/bork/home.nix;
+  #   };
+  # };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
@@ -189,6 +191,7 @@ in
   # };
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment.systemPackages = with pkgs; [
+    inputs.home-manager.packages.${pkgs.system}.default
     vim
     wget
     kate
@@ -203,22 +206,20 @@ in
     gnomeExtensions.just-perfection
     xorg.xeyes
     # emacs29
-    ripgrep
     # optional dependencies
-    emacsPackages.vterm
-    coreutils
-    fd
-    clang
-    findutils
-    shellcheck
-    multimarkdown
-    nixfmt-classic
-    nixfmt-rfc-style
-    cmake
-    libvterm
-    libtool
-    gnumake
-    gcc
+    # coreutils
+    # fd
+    # clang
+    # findutils
+    # shellcheck
+    # multimarkdown
+    # nixfmt-classic
+    # nixfmt-rfc-style
+    # cmake
+    # libvterm
+    # libtool
+    # gnumake
+    # gcc
 
     keepassxc
     git
@@ -369,10 +370,6 @@ in
 
   programs.adb.enable = true;
 
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs29;
-  };
 
   programs.fish.enable = true;
   programs.starship.enable = true;

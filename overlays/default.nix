@@ -10,6 +10,9 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    # ollama = prev.ollama.override {
+    #   enableCuda = true;
+    # };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
