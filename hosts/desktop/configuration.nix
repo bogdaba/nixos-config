@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { inputs, config, pkgs, ... }:
 
 #let
@@ -29,12 +25,12 @@ in
     ./hardware-configuration.nix
 
     # My modules
-    ../modules/env.nix
-    ../modules/fonts.nix
+    ../common/env.nix
+    ../common/fonts.nix
     # ../modules/programs.nix
     # ../modules/shell.nix
-    ../modules/nvidia.nix
-    ../modules/python.nix
+    ../common/nvidia.nix
+    ../common/python.nix
   ];
   
   nixpkgs = {
@@ -353,6 +349,9 @@ in
     xsel
     # xdragon
     ripdrag
+    eza
+    # zed-editor
+    helix
   ];
 
   programs.firefox = {
