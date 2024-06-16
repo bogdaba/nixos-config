@@ -175,7 +175,6 @@ in
     conky
     lm_sensors
     netdata
-    htop
     gmic-qt
     pkgsUnstable.discordchatexporter-cli
     gimp-with-plugins
