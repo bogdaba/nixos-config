@@ -10,4 +10,5 @@
     gnomeExtensions.kimpanel
     # gnomeExtensions.paperwm
     gnomeExtensions.just-perfection
+  ];
 }

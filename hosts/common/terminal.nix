@@ -25,7 +25,7 @@
     htop
     zathura
     qpdf
-    pkgsUnstable.yt-dlp
+    unstable.yt-dlp
     curl
     git
     wget

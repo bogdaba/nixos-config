@@ -1,9 +1,5 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 
-#let
-#  pkgsStable = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
-#in
-
 let
   pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
@@ -28,8 +24,6 @@ in
     # My modules
     ../common/env.nix
     ../common/fonts.nix
-    # ../modules/programs.nix
-    # ../modules/shell.nix
     ../common/nvidia.nix
     ../common/python.nix
     ../common/ollama.nix
@@ -40,6 +34,8 @@ in
     ../common/misc.nix
     ../common/gnome.nix
     ../common/systemd-desktop.nix
+    # ../modules/programs.nix
+    # ../modules/shell.nix
   ];
   
   nixpkgs = {
@@ -50,12 +46,13 @@ in
     ];
   };
 
-  # home-manager = {
-  #   extraSpecialArgs = { inherit inputs outputs; };
-  #   users = {
-  #     bork = import ../../home/bork/home.nix;
-  #   };
-  # };
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      # Import your home-manager configuration
+      bork = import ../home.nix;
+    };
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
@@ -78,10 +75,8 @@ in
         enable = true;
         wayland = false;
       };
-      gnome = {
-        enable = true;
-      };
     };
+    desktopManager.gnome.enable = true;
   };
 
   services.displayManager.autoLogin.enable = true;
@@ -216,6 +211,7 @@ in
     # lf
     # pkgsUnstable.logseq
     sqlite
+    qimgv
     pkgsUnstable.qutebrowser
     brave
     floorp
@@ -229,7 +225,7 @@ in
     rclone
     cryptsetup
     tor-browser
-    pkgsUnstable.hydrus
+    unstable.hydrus
   ];
   programs.adb.enable = true;
   services.flatpak.enable = true;

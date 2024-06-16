@@ -1,33 +1,48 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, config, pkgs, ... }:
+{ inputs, outputs, lib, config, pkgs, ... }:
 
 let
   pkgsUnstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-27.3.11"
+        "python3.11-django-3.1.14"
+      ];
+    };
   };
 in
 
 {
   imports = [
     # Import home-manager's NixOS module
-    inputs.home-manager.nixosModules.home-manager
+    # inputs.home-manager.nixosModules.home-manager
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
     # My modules
-    ../modules/env.nix
-    ../modules/fonts.nix
+    ../common/env.nix
+    ../common/fonts.nix
+    # ../common/nvidia.nix
+    # ../common/python.nix
+    # ../common/ollama.nix
+    ../common/emacs.nix
+    ../common/rust.nix
+    ../common/input.nix
+    ../common/terminal.nix
+    ../common/misc.nix
+    ../common/gnome.nix
+    # ../common/systemd-desktop.nix
+    # ../modules/programs.nix
     # ../modules/shell.nix
-    # ../modules/vscode.nix
   ];
 
   nixpkgs = {
     overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
     ];
   };
 
@@ -39,61 +54,34 @@ in
     };
   };
 
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Bootloader.
+  nix.settings.auto-optimise-store = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   
   boot.initrd.luks.devices."luks-5a3b4af0-d37b-41bb-80d0-8636b7cc2599".device = "/dev/disk/by-uuid/5a3b4af0-d37b-41bb-80d0-8636b7cc2599";
 
-  networking.hostName = "laptop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
+  networking.hostName = "laptop";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Warsaw";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = false;
+      };
+    };
+    desktopManager.gnome.enable = true;
   };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-   # Wayaland
-  services.xserver.displayManager.gdm.wayland = true;
   programs.xwayland.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "pl";
-    variant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "pl2";
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -114,9 +102,6 @@ in
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bork = {
@@ -145,25 +130,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    pkgsUnstable.obsidian
-
-    # emacs
-    ripgrep
-    # optional dependencies
-    emacsPackages.vterm
-    coreutils
-    fd
-    clang
-    findutils
-    shellcheck
-    multimarkdown
-    nixfmt-classic
-    nixfmt-rfc-style
-    cmake
-    libvterm
-    libtool
-    gnumake
-    gcc
 
     krusader
     thunderbird
@@ -172,87 +138,23 @@ in
     zip
     _7zz
     rar
-
-    vim
-    wget
-    pkgsUnstable.calibre
     hledger
     qimgv
-    pkgsUnstable.anki # the other one is outdated
     libsForQt5.okular
-    doublecmd
-    syncplay
-    mc
-    git
-    keepassxc
     # firefox
     #obsidian
-    gnome.gnome-tweaks
-    gnomeExtensions.appindicator
-    gnomeExtensions.tiling-assistant
-    gnome.gnome-tweaks
-    gnomeExtensions.ddterm
-    gnomeExtensions.vertical-workspaces
-    gnomeExtensions.kimpanel
     qbittorrent
-    mpv
     python3
     neofetch
-    libreoffice
     copyq
-    yt-dlp
-    speedcrunch
-    qpdf
-    onlyoffice-bin
-    vscode-fhs
     jumpapp
-    todoist-electron
     libwebp
-    fish
     sqlite
-    tmux
   ];
-
-  programs.firefox = {
-    enable = true;
-  };
-  programs.tmux.enable= true;
-  # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
-
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs29;
-  };
 
   services.flatpak.enable = true;
 
-#  environment.pathsToLink = [ "/share/zsh" ];
-#  programs.zsh = {
-#    enable = true;
-#    enableCompletion = true;
-#    autosuggestions.enable = true;
-#  };
-
   services.locate.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
