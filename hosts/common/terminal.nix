@@ -13,16 +13,27 @@
     jq
     poppler
     fd
-    rg
+    ripgrep
     fzf
     zoxide
     xclip
     wl-clipboard
-    ripgrep
 
     eza
     nushell
     zellij
-    nvim
+    htop
+    zathura
+    qpdf
+    pkgsUnstable.yt-dlp
+    curl
+    git
+    wget
   ];
+
+  programs = {
+    neovim.enable = true;
+    fish.enable = true;
+    starship.enable = true;
+  };
 }

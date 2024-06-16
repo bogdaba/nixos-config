@@ -37,6 +37,9 @@ in
     ../common/rust.nix
     ../common/input.nix
     ../common/terminal.nix
+    ../common/misc.nix
+    ../common/gnome.nix
+    ../common/systemd-desktop.nix
   ];
   
   nixpkgs = {
@@ -58,29 +61,33 @@ in
   nix.settings.auto-optimise-store = true;
 
 
-  # Bootloader.
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  networking.hostName = "desktop"; # Define your hostname.
+  networking.hostName = "desktop";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Warsaw";
   time.hardwareClockInLocalTime = true;
 
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = false;
+      };
+      gnome = {
+        enable = true;
+      };
+    };
+  };
 
-  # services.xserver.enable = true;
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.wayland = false;
-  # programs.xwayland.enable = true;
-  # hardware.nvidia.forceFullCompositionPipeline = true;
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "bork";
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   # GTK applications
   # programs.dconf.enable = true;
@@ -103,12 +110,6 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -123,87 +124,23 @@ in
     ];
   };
 
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "bork";
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
-
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-27.3.11"
   ];
 
-  systemd.services.drive-mirroring = {
-    description = "Drive sync";
-    script = ''
-      /home/bork/bin/brk-home-backup
-    '';
-    path = with pkgs; [ bash rsync ];
-  };
-
-  systemd.timers.drive-mirroring = {
-    description = "Drive sync";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
-    };
-  };
-
-  # environment.homeBinInPath = true;
-  # environment.sessionVariables = {
-  #   # MOZ_ENABLE_WAYLAND = "1"; # firefox
-  #   # Obsidian has pane bug with electron on. Also need to disable xwayland
-  #   # https://forum.obsidian.md/t/cannot-move-rearrange-panes-when-running-under-wayland/42377/55
-  #   # NIXOS_OZONE_WL = "1"; # electron - enabling
-  #   LEDGER_FILE = "/home/bork/vault/areas/finances/2024.journal";
-  #   # PATH = "/home/bork/scripts";
-  #   # QT_QPA_PLATFORM = "wayland";
-  # };
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
-    vim
-    wget
     kate
-    # firefox
-    gnomeExtensions.appindicator
-    gnomeExtensions.tiling-assistant
-    gnome.gnome-tweaks
-    gnomeExtensions.ddterm
-    gnomeExtensions.vertical-workspaces
-    gnomeExtensions.kimpanel
-    gnomeExtensions.paperwm
-    gnomeExtensions.just-perfection
     xorg.xeyes
-    # emacs29
-    # optional dependencies
-    # coreutils
-    # fd
-    # clang
-    # findutils
-    # shellcheck
-    # multimarkdown
-    # nixfmt-classic
-    # nixfmt-rfc-style
-    # cmake
-    # libvterm
-    # libtool
-    # gnumake
-    # gcc
-
-    keepassxc
-    git
-    obsidian
     pkgsUnstable.vscode-fhs
-    syncplay
     davinci-resolve
     pkgsUnstable.krita
     pkgsUnstable.krita-plugin-gmic
     gmic-qt
     blender
     pkgsUnstable.godot_4
-
     krusader
     thunderbird
     krename
@@ -211,7 +148,6 @@ in
     zip
     _7zz
     rar
-    curl
     pkgsUnstable.anki
     mpv
     pkgsUnstable.ffmpeg_7-full
@@ -221,23 +157,16 @@ in
     handbrake
     hledger
     # pass
-    speedcrunch
     qbittorrent
-    pkgsUnstable.yt-dlp
-    qpdf
-    doublecmd
-    calibre
     libreoffice-qt
-    onlyoffice-bin
     jumpapp
     pkgsUnstable.todoist-electron
     flameshot
     # fish
     libwebp
-    neovim
-    nnn
+    # nnn
     rclone
-    mc
+    # mc
     # ranger
     pkgsUnstable.cozy
     deja-dup
@@ -258,7 +187,7 @@ in
     gimpPlugins.gmic
     pkgsUnstable.copyq
     # ranger
-    kitty
+    # kitty
     pkgsUnstable.digikam
     zotero
     #mpd
@@ -281,19 +210,17 @@ in
     pkgsUnstable.archivebox
     pkgsUnstable.single-file-cli
     # passmark-performancetest
-
-    pkgsUnstable.planify
     libsForQt5.okular
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
     # lf
-    pkgsUnstable.logseq
+    # pkgsUnstable.logseq
     sqlite
     pkgsUnstable.qutebrowser
     brave
     floorp
     pandoc
-    chromium
+    # chromium
     pkgsUnstable.backgroundremover
     pkgsUnstable.ollama
     sxhkd
@@ -303,45 +230,10 @@ in
     cryptsetup
     tor-browser
     pkgsUnstable.hydrus
-    ueberzug
-    # zed-editor
-    # helix
   ];
-
-  programs.firefox = {
-    enable = true;
-  };
-  programs.tmux.enable= true;
-
-  programs.zsh.enable = true;
-
-  programs.neovim = {
-    enable = true;
-  };
-
   programs.adb.enable = true;
-
-
-  programs.fish.enable = true;
-  programs.starship.enable = true;
-
-  # nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
-
   services.flatpak.enable = true;
-
-  # services.monit.enable = true;
-
-  # services.mpd.enable = true;
-
-  #environment.pathsToLink = [ "/share/zsh" ];
-  #programs.zsh = {
-  #  enable = true;
-  #  enableCompletion = true;
-  #  autosuggestions.enable = true;
-  #};
-
   services.locate.enable = true;
-
   programs.steam.enable = true;
 
   # services.mullvad-vpn.enable = true;
@@ -350,29 +242,6 @@ in
   # Virtualisation
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
