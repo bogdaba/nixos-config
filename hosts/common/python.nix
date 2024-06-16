@@ -1,22 +1,35 @@
 { inputs, config, pkgs, ... }:
 
-let
-  py3 = pkgs.python311Packages;
-in
 {
-  environment.systemPackages = with pkgs; [
-    python3
-    py3.numpy
-    py3.pandas
-    py3.isort
-    py3.nose
-    py3.pytest
-    py3.setuptools
-    py3.prompt-toolkit
-    emacsPackages.pipenv
-    pipenv
+environment.systemPackages = with pkgs; [
+    (python311.withPackages(ps: with ps; [
+      numpy
+      toolz
+      setuptools
+      isort
+      pipenv
+      nose
+      pytest
+    ]))
   ];
 }
+# let
+#   py3 = pkgs.python311Packages;
+# in
+# {
+#   environment.systemPackages = with pkgs; [
+#     python3
+#     py3.numpy
+#     py3.pandas
+#     py3.isort
+#     py3.nose
+#     py3.pytest
+#     py3.setuptools
+#     py3.prompt-toolkit
+#     emacsPackages.pipenv
+#     pipenv
+#   ];
+# }
 # let
   # my-python-packages = ps: with ps; [
   #   pandas

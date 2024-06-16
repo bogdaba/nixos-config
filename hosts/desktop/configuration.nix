@@ -10,6 +10,7 @@ let
     config = {
       allowUnfree = true; 
       permittedInsecurePackages = [
+        "electron-27.3.11"
         "python3.11-django-3.1.14"
       ];
     };
@@ -33,6 +34,9 @@ in
     ../common/python.nix
     ../common/ollama.nix
     ../common/emacs.nix
+    ../common/rust.nix
+    ../common/input.nix
+    ../common/terminal.nix
   ];
   
   nixpkgs = {
@@ -67,20 +71,6 @@ in
   time.timeZone = "Europe/Warsaw";
   time.hardwareClockInLocalTime = true;
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
 
   # services.xserver.enable = true;
   # services.xserver.displayManager.sddm.enable = true;
@@ -100,25 +90,6 @@ in
     style = "adwaita-dark";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "pl";
-    variant = "";
-  };
-  
-  # Configure console keymap
-  console.keyMap = "pl2";
-
-  i18n = {
-    inputMethod = {
-      enabled = "fcitx5"; #or ibus
-      #ibus.engines = with pkgs.ibus-engines; [ mozc ];
-      fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-      ];
-    };
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -159,7 +130,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
+    "electron-27.3.11"
   ];
 
   systemd.services.drive-mirroring = {
@@ -223,7 +194,7 @@ in
 
     keepassxc
     git
-    pkgsUnstable.obsidian
+    obsidian
     pkgsUnstable.vscode-fhs
     syncplay
     davinci-resolve
@@ -267,7 +238,7 @@ in
     nnn
     rclone
     mc
-    ranger
+    # ranger
     pkgsUnstable.cozy
     deja-dup
     pkgsUnstable.mullvad-vpn
@@ -286,7 +257,7 @@ in
     gimp-with-plugins
     gimpPlugins.gmic
     pkgsUnstable.copyq
-    ranger
+    # ranger
     kitty
     pkgsUnstable.digikam
     zotero
@@ -315,10 +286,9 @@ in
     libsForQt5.okular
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
-    lf
+    # lf
     pkgsUnstable.logseq
     sqlite
-    pkgsUnstable.wezterm
     pkgsUnstable.qutebrowser
     brave
     floorp
@@ -328,33 +298,14 @@ in
     pkgsUnstable.ollama
     sxhkd
     xorg.xmodmap
-    pkgsUnstable.superfile
     pkgsUnstable.gifski
     rclone
     cryptsetup
     tor-browser
     pkgsUnstable.hydrus
-    zellij
     ueberzug
-    # yazi
-    yazi
-    file
-    ffmpegthumbnailer
-    unar
-    jq
-    poppler
-    fd
-    ripgrep
-    fzf
-    zoxide
-    xclip
-    wl-clipboard
-    xsel
-    # xdragon
-    ripdrag
-    eza
     # zed-editor
-    helix
+    # helix
   ];
 
   programs.firefox = {

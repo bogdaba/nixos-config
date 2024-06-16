@@ -1,8 +1,12 @@
 { inputs, config, lib, pkgs, ... }:
 
 {
-services.ollama = {
-  enable = true;
-  acceleration = "cuda";
-};
+  environment.systemPackages = with pkgs; [
+    rustup
+    rust-analyzer
+    cargo
+    rustc
+    rustfmt
+    gcc
+  ];
 }
