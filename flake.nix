@@ -38,6 +38,12 @@
             ./hosts/desktop/configuration.nix
           ];
         };
+        laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs;};
+          modules = [
+            ./hosts/laptop/configuration.nix
+          ];
+        };
       };
       homeConfigurations = {
         "bork@desktop" = home-manager.lib.homeManagerConfiguration {
