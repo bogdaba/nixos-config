@@ -225,6 +225,8 @@ in
     cryptsetup
     tor-browser
     unstable.hydrus
+    solaar
+    piper
   ];
   programs.adb.enable = true;
   services.flatpak.enable = true;

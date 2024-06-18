@@ -18,6 +18,7 @@
     zoxide
     xclip
     wl-clipboard
+    ripdrag
 
     eza
     nushell
