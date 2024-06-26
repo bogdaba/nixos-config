@@ -35,7 +35,7 @@ in
       "${config.home.homeDirectory}/.emacs.d/bin"
     ];
     file = {
-      ".bash_profile".source = ../config/bash/bash_profile;
+      ".bash_profile".source = ../config/bash/.bash_profile;
     };
   };
 
