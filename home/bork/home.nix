@@ -28,6 +28,8 @@
       "${config.home.homeDirectory}/.emacs.d/bin"
     ];
   };
+  # Wezterm configuration
+  xdg.configFile."wezterm/wezterm.lua".source = ../config/wezterm.lua;
 
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
