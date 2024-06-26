@@ -1,4 +1,3 @@
-
 { inputs, config, lib, pkgs, ... }:
 let
   secretsFile = ./syncthing-secrets.nix;
@@ -6,7 +5,7 @@ let
   secrets = if secretsFileExists then import secretsFile else {};
 in
 {
-services.syncthing = {
+  services.syncthing = {
     enable = true;
     user = "bork";
     dataDir = "/home/bork/Sync";
@@ -19,13 +18,8 @@ services.syncthing = {
           path = "/home/bork/Documents";
           devices = [ "desktop" ];
         };
-        "Example" = {
-          path = "/home/bork/Example";
-          devices = [ "device1" ];
-        };
       };
-      # Default empty devices
-      devices = {};
+      devices = secrets.services.syncthing.settings.devices or {};
     } (secrets.services.syncthing.settings or {});
   };
 }
