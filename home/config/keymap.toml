@@ -1,0 +1,11 @@
+[[manager.prepend_keymap]]
+on = [ "<C-n>" ]
+run = '''
+    shell 'ripdrag "$@" -x 2>/dev/null &' --confirm
+'''
+
+[[manager.prepend_keymap]]
+on  = [ "y" ]
+run = [ "yank", '''
+	shell --confirm 'echo "$@" | xclip -i -selection clipboard -t text/uri-list'
+''' ]

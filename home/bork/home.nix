@@ -28,9 +28,12 @@
       "${config.home.homeDirectory}/.emacs.d/bin"
     ];
   };
-  # Wezterm configuration
+
   xdg.configFile."wezterm/wezterm.lua".source = ../config/wezterm.lua;
   xdg.configFile."fish/config.fish".source = ../config/config.fish;
+  xdg.configFile."yazi/keymap.toml".source = ../config/keymap.toml;
+  xdg.configFile."yazi/theme.toml".source = ../config/theme.toml;
+  xdg.configFile."yazi/yazi.toml".source = ../config/yazi.toml;
 
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
