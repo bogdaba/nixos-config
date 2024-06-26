@@ -259,3 +259,5 @@ function yy
 end
 
 set -p fish_user_paths ~/.emacs.d/bin
+
+zoxide init fish | source

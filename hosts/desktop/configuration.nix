@@ -34,6 +34,7 @@ in
     ../common/misc.nix
     ../common/gnome.nix
     ../common/systemd-desktop.nix
+    ../common/syncthing.nix
     # ../modules/programs.nix
     # ../modules/shell.nix
   ];
@@ -227,6 +228,7 @@ in
     unstable.hydrus
     solaar
     piper
+    logseq
   ];
   programs.adb.enable = true;
   services.flatpak.enable = true;
