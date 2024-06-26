@@ -34,7 +34,7 @@ in
     ../common/misc.nix
     ../common/gnome.nix
     ../common/systemd-desktop.nix
-    ../common/syncthing.nix
+    # ../common/syncthing.nix
     # ../modules/programs.nix
     # ../modules/shell.nix
   ];
