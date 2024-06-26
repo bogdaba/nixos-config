@@ -30,6 +30,7 @@
   };
   # Wezterm configuration
   xdg.configFile."wezterm/wezterm.lua".source = ../config/wezterm.lua;
+  xdg.configFile."fish/config.fish".source = ../config/config.fish;
 
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
