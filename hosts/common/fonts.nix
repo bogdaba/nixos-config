@@ -12,6 +12,7 @@
     open-sans
     source-serif-pro
     source-sans-pro
+    fg-virgil
   ];
   fonts.fontconfig.defaultFonts.sansSerif = [
     "M PLUS 2"
