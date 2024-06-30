@@ -7,6 +7,12 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
+    starsector = prev.starsector.overrideAttrs (oldAttrs: {
+    postPatch = ''
+      ${oldAttrs.postPatch}
+      cp ${./settings.json} data/config/settings.json
+    '';
+  });
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });

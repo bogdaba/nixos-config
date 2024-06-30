@@ -229,6 +229,8 @@ in
     solaar
     piper
     logseq
+    mindforger
+    unstable.starsector
   ];
   programs.adb.enable = true;
   services.flatpak.enable = true;
