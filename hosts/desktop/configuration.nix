@@ -231,6 +231,7 @@ in
     logseq
     mindforger
     unstable.starsector
+    voicevox
   ];
   programs.adb.enable = true;
   services.flatpak.enable = true;
