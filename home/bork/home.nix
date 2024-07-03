@@ -46,6 +46,8 @@ in
   xdg.configFile."yazi/yazi.toml".source = ../config/yazi/yazi.toml;
   xdg.configFile."mpv/input.conf".source = ../config/mpv/input.conf;
   xdg.configFile."mpv/mpv.conf".source = ../config/mpv/mpv.conf;
+  xdg.configFile."gtk-4.0/gtk.css".source = ../config/gtk/gtk.css;
+
 
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];

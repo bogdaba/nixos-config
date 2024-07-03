@@ -1,0 +1,13 @@
+@import 'colors.css';
+
+windowcontrols > button {
+  padding: 0px;
+  margin: 0px;
+  min-height: 0px;
+}
+
+headerbar {
+  min-height: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
