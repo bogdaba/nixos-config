@@ -7,7 +7,8 @@ let
       allowUnfree = true; 
       permittedInsecurePackages = [
         "electron-27.3.11"
-        "python3.11-django-3.1.14"
+        "python3.12-django-3.1.14"
+        "python3.12-youtube-dl-2021.12.17"
       ];
     };
   };
