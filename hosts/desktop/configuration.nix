@@ -230,7 +230,6 @@ in
     piper
     logseq
     mindforger
-    unstable.starsector
     voicevox
   ];
   programs.adb.enable = true;
