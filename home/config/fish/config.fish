@@ -243,11 +243,12 @@ alias mocp="bash -c mocp"
 alias update 'sudo nixos-rebuild switch --flake /home/bork/nixos-config#'
 alias hupdate 'home-manager switch -b backup --flake /home/bork/nixos-config#bork@desktop'
 alias pfuah 'shutdown 0'
+alias git-poi 'git add . && git commit -m "Poi"'
 alias monb 'xrandr --output DP-2 --mode 1920x1080 --pos 1920x0 --output DP-4 --primary --mode 1920x1200 --pos 0x0'
 alias mon1 'xrandr --output DP-4 --primary --mode 1920x1200 --pos 0x0 --output DP-2 --off'
 alias mon2 'xrandr --output DP-2 --mode 1920x1080 --pos 0x0 --output DP-4 --off'
-alias pipeline-on='nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=On}"'
-alias pipeline-off='nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=Off}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=Off}"'
+alias pipeline-on 'nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=On}"'
+alias pipeline-off 'nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=Off}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=Off}"'
 
 function yy
 	set tmp (mktemp -t "yazi-cwd.XXXXXX")
