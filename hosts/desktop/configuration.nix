@@ -13,7 +13,7 @@ let
     };
   };
 in
-
+# update --option eval-cache false
 {
   imports = [
     # Import home-manager's NixOS module
@@ -129,6 +129,7 @@ in
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-27.3.11"
+    "python3.11-django-3.1.14"
   ];
 
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
@@ -170,7 +171,7 @@ in
     rclone
     # mc
     # ranger
-    pkgsUnstable.cozy
+    cozy
     deja-dup
     pkgsUnstable.mullvad-vpn
     pkgsUnstable.mullvad-browser
@@ -208,7 +209,7 @@ in
     neofetch
     gnumeric
     pkgsUnstable.sc-im
-    pkgsUnstable.archivebox
+    archivebox
     pkgsUnstable.single-file-cli
     # passmark-performancetest
     libsForQt5.okular
