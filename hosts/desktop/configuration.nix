@@ -219,13 +219,13 @@ in
     # pkgsUnstable.logseq
     sqlite
     qimgv
-    pkgsUnstable.qutebrowser
+    qutebrowser
     brave
     floorp
     pandoc
     # chromium
     pkgsUnstable.backgroundremover
-    pkgsUnstable.ollama
+    ollama
     sxhkd
     xorg.xmodmap
     pkgsUnstable.gifski
