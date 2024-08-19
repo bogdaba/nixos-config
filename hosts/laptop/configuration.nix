@@ -155,6 +155,7 @@ in
     jumpapp
     libwebp
     sqlite
+    usbimager
   ];
 
   services.flatpak.enable = true;
