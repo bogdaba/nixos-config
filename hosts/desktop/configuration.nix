@@ -160,7 +160,6 @@ in
     zip
     _7zz
     rar
-    pkgsUnstable.anki
     mpv
     pkgsUnstable.ffmpeg_7-full
     # tts
