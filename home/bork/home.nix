@@ -54,7 +54,13 @@ in
 
   programs.home-manager.enable = true;
   programs.git.enable = true;
-  services.syncthing.enable = true;
+  services.syncthing = {
+    enable = true;
+    extraOptions = [
+      "--home=/home/bork/.config/syncthing"
+    ];
+  };
+
 
 
   # Nicely reload system units when changing configs
