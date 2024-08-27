@@ -65,9 +65,18 @@ in
   };
 
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
+  # Mounted filesystems
+  fileSystems."/mnt/australia" = {
+    device = "/dev/disk/by-uuid/c5b755c1-08ce-49de-b915-9784b2f1be2a";
+    fsType = "ext4";
+    options = ["nofail"];
+
+  };
 
   networking.hostName = "desktop";
   networking.networkmanager.enable = true;
