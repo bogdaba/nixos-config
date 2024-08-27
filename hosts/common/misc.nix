@@ -15,6 +15,7 @@
     speedcrunch
     calibre
     onlyoffice-bin
+    beancount
   ];
 
   programs.firefox = {
