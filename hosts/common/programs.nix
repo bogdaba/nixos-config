@@ -11,7 +11,7 @@ environment.systemPackages = with pkgs; [
   calibre
   hledger
   qimgv
-  anki-bin # the other one is outdated
+  # anki-bin # the other one is outdated
   libsForQt5.okular
   doublecmd
   syncplay
