@@ -30,6 +30,7 @@
     curl
     git
     wget
+    fastfetch
   ];
 
   programs = {
