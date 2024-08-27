@@ -101,7 +101,7 @@ in
   systemd.services."autovt@tty1".enable = false;
 
   # GTK applications
-  # programs.dconf.enable = true;
+  programs.dconf.enable = true;
   qt = {
     enable = true;
     platformTheme = "gnome";
