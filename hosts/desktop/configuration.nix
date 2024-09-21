@@ -255,6 +255,22 @@ in
   services.flatpak.enable = true;
   services.locate.enable = true;
   programs.steam.enable = true;
+  # programs.gamescope = {
+  #   enable = true;
+  #   capSysNice = true;
+  # programs.steam = {
+  #   enable = true;
+  #   gamescopeSession.enable = true;
+  #   remotePlay.openFirewall = true;
+  #   dedicatedServer.openFirewall = true;
+  #   localNetworkGameTransfers.openFirewall = true;
+  #   package = pkgs.steam.override {
+  #     extraPkgs = pkgs: with pkgs; [
+  #       libkrb5
+  #       keyutils
+  #     ];
+  #   };
+  # };
 
   # services.mullvad-vpn.enable = true;
   # services.mullvad-vpn.package = pkgs.mullvad-vpn;
