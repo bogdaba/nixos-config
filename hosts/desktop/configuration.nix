@@ -90,7 +90,7 @@ in
     displayManager = {
       gdm = {
         enable = true;
-        wayland = false;
+        wayland = true;
       };
     };
     desktopManager.gnome.enable = true;
@@ -258,7 +258,7 @@ in
 
   # services.mullvad-vpn.enable = true;
   # services.mullvad-vpn.package = pkgs.mullvad-vpn;
-   
+
   # Virtualisation
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
