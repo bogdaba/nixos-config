@@ -145,6 +145,9 @@ in
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
+    unstable.zed-editor
+    vscodium
+    gedit
     kate
     xorg.xeyes
     pkgsUnstable.vscode-fhs
