@@ -80,6 +80,13 @@ xresources.properties = {
   "emacs.inputStyle" = "callback";
 };
 
+dconf.enable = true;
+dconf.settings = {
+    "org/gnome/mutter" = {
+      experimental-features = [ "variable-refresh-rate" ];
+    };
+  };
+
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
 
