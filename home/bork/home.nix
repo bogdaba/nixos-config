@@ -47,7 +47,38 @@ in
   xdg.configFile."mpv/input.conf".source = ../config/mpv/input.conf;
   xdg.configFile."mpv/mpv.conf".source = ../config/mpv/mpv.conf;
   xdg.configFile."gtk-4.0/gtk.css".source = ../config/gtk/gtk.css;
+xdg.desktopEntries.true-emacs = {
+  name = "True Emacs";
+  genericName = "Text Editor";
+  comment = "Edit text";
+  mimeType = [
+    "text/english"
+    "text/plain"
+    "text/x-makefile"
+    "text/x-c++hdr"
+    "text/x-c++src"
+    "text/x-chdr"
+    "text/x-csrc"
+    "text/x-java"
+    "text/x-moc"
+    "text/x-pascal"
+    "text/x-tcl"
+    "text/x-tex"
+    "application/x-shellscript"
+    "text/x-c"
+    "text/x-c++"
+  ];
+  exec = "emacsclient -cn";
+  icon = "emacs";
+  type = "Application";
+  terminal = false;
+  categories = [ "Development" "TextEditor" "Utility" ];
+  # startupWMClass = "emacs";
+};
 
+xresources.properties = {
+  "emacs.inputStyle" = "callback";
+};
 
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
