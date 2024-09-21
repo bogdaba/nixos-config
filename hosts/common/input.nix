@@ -1,7 +1,6 @@
 { inputs, config, lib, pkgs, ... }:
 
 {
-
   hardware.bluetooth.enable = true;
 
   # Select internationalisation properties.

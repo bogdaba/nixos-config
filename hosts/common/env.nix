@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-  
+
 {
   environment.homeBinInPath = true;
   environment.sessionVariables = {
@@ -8,6 +8,9 @@
     # https://forum.obsidian.md/t/cannot-move-rearrange-panes-when-running-under-wayland/42377/55
     # NIXOS_OZONE_WL = "1"; # electron - enabling
     LEDGER_FILE = "/home/bork/codex/mun/ledger/2024.journal";
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
     # PATH = "/home/bork/scripts";
   };
   environment.shellAliases = {
