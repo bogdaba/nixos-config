@@ -31,6 +31,8 @@
     git
     wget
     fastfetch
+    xorg.xeyes
+    pciutils
   ];
 
   programs = {
