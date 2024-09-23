@@ -247,8 +247,11 @@ alias git-poi 'git add . && git commit -m "Poi"'
 alias monb 'xrandr --output DP-2 --mode 1920x1080 --pos 1920x0 --output DP-4 --primary --mode 1920x1200 --pos 0x0'
 alias mon1 'xrandr --output DP-4 --primary --mode 1920x1200 --pos 0x0 --output DP-2 --off'
 alias mon2 'xrandr --output DP-2 --mode 1920x1080 --pos 0x0 --output DP-4 --off'
-alias pipeline-on 'nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=On}"'
-alias pipeline-off 'nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=Off}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=Off}"'
+alias pion 'nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=On}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=On}"'
+alias pioff 'nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @1920x1080 +1920+0 {ViewPortIn=1920x1080, ViewPortOut=1920x1080+0+0, ForceFullCompositionPipeline=Off}, DPY-5: nvidia-auto-select @1920x1200 +0+0 {ViewPortIn=1920x1200, ViewPortOut=1920x1200+0+0, ForceFullCompositionPipeline=Off}"'
+alias baron='dconf write /org/gnome/shell/extensions/just-perfection/panel true'
+alias baroff='dconf write /org/gnome/shell/extensions/just-perfection/panel false'
+alias bartoggle='dconf write /org/gnome/shell/extensions/just-perfection/panel (test (dconf read /org/gnome/shell/extensions/just-perfection/panel) = "true" && echo "false" || echo "true")'
 
 function yy
 	set tmp (mktemp -t "yazi-cwd.XXXXXX")
