@@ -162,6 +162,17 @@ in
 
   services.locate.enable = true;
 
+  services.upower = {
+    enable = true;
+    ignoreLid = false;
+    noPollBatteries = false;
+  };
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x9c31", ATTR{power/wakeup}="disabled"
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x9c26", ATTR{power/wakeup}="disabled"
+  '';
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

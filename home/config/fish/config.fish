@@ -249,6 +249,9 @@ alias mon1 'xrandr --output DP-4 --primary --mode 1920x1200 --pos 0x0 --output D
 alias mon2 'xrandr --output DP-2 --mode 1920x1080 --pos 0x0 --output DP-4 --off'
 alias pion='nvidia-settings --assign CurrentMetaMode="DP-2: 1920x1200 +1080+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}, DP-4: nvidia-auto-select +0+0 {rotation=right, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On}"'
 alias pioff='nvidia-settings --assign CurrentMetaMode="DP-2: 1920x1200 +1080+0 {ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off}, DP-4: nvidia-auto-select +0+0 {rotation=right, ForceCompositionPipeline=Off, ForceFullCompositionPipeline=Off}"'
+alias baron='dconf write /org/gnome/shell/extensions/just-perfection/panel true'
+alias baroff='dconf write /org/gnome/shell/extensions/just-perfection/panel false'
+alias bartoggle='dconf write /org/gnome/shell/extensions/just-perfection/panel (test (dconf read /org/gnome/shell/extensions/just-perfection/panel) = "true" && echo "false" || echo "true")'
 function yy
 	set tmp (mktemp -t "yazi-cwd.XXXXXX")
 	yazi $argv --cwd-file="$tmp"

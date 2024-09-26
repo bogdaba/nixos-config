@@ -16,7 +16,6 @@
     calibre
     onlyoffice-bin
     beancount
-    xorg.xeyes
   ];
 
   programs.firefox = {
