@@ -10,5 +10,6 @@
     gnomeExtensions.kimpanel
     # gnomeExtensions.paperwm
     gnomeExtensions.just-perfection
+    gnomeExtensions.tactile
   ];
 }
