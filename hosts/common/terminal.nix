@@ -33,6 +33,7 @@
     fastfetch
     xorg.xeyes
     pciutils
+    mtr
   ];
 
   programs = {
