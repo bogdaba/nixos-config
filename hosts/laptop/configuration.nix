@@ -136,6 +136,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
+    devilutionx
     krusader
     thunderbird
     krename
