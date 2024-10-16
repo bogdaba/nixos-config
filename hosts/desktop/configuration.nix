@@ -245,7 +245,7 @@ in
     rclone
     cryptsetup
     tor-browser
-    unstable.hydrus
+    hydrus
     solaar
     piper
     logseq
