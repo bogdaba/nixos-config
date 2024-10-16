@@ -66,7 +66,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "laptop";
+  networking.hostName = "lenovo";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
