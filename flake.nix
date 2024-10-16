@@ -44,6 +44,12 @@
             ./hosts/laptop/configuration.nix
           ];
         };
+        lenovo = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs;};
+          modules = [
+            ./hosts/lenovo/configuration.nix
+          ];
+        };
       };
       homeConfigurations = {
         "bork" = home-manager.lib.homeManagerConfiguration {
