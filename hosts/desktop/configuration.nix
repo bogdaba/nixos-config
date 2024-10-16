@@ -145,7 +145,7 @@ in
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
-    devilutionx
+    unstable.devilutionx
     unstable.zed-editor
     vscodium
     gedit
