@@ -54,6 +54,8 @@ inputs.home-manager.packages.${pkgs.system}.default
 git
 ];
 nixpkgs.config.allowUnfree = true;
+# Set your time zone.
+  time.timeZone = "Europe/Warsaw";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
