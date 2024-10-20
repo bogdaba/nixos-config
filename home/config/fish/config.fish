@@ -242,6 +242,7 @@ alias mocp="bash -c mocp"
 
 alias update 'sudo nixos-rebuild switch --flake /home/bork/nixos-config#'
 alias hupdate 'home-manager switch -b backup --flake /home/bork/nixos-config#bork'
+alias hwupdate 'home-manager switch -b backup --flake /home/bork/nixos-config#borkw'
 alias pfuah 'shutdown 0'
 alias git-poi 'git add . && git commit -m "Poi"'
 alias monb 'xrandr --output DP-2 --mode 1920x1080 --pos 1920x0 --output DP-4 --primary --mode 1920x1200 --pos 0x0'
